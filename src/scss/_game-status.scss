@@ -1,5 +1,5 @@
 .game-status {
-    font-size: 2em;
+    font-size: 1.4em;
     margin: 40px auto;
 
     dt {
@@ -13,12 +13,19 @@
     dd {
         margin: 0;
     }
+
+    @media all and (min-width: 400px) {
+        font-size: 2em;
+    }
 }
 
 .game-status__item {
     display: grid;
-    grid-template-columns: 20% 70%;
+    grid-template-columns: 30% 60%;
     gap: 10%;
+    @media all and (min-width: 400px) {
+        grid-template-columns: 20% 70%;
+    }
 }
 
 .game-status__progress {
@@ -27,11 +34,11 @@
     height: 20px;
 
     &::-webkit-progress-bar {
-        background-color: greenyellow;
+        background-color: rgb(203, 211, 214);
         border-radius: 7px;
     }
 
     &::-webkit-progress-value {
-        background-color: green;
+        background-color: rgb(0, 173, 0);
     }
 }

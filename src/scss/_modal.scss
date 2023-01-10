@@ -1,0 +1,21 @@
+.dialog {
+    margin: auto;
+    position: fixed;
+
+    &::backdrop {
+        background-color: rgba(#000, 0.35);
+        backdrop-filter: blur(2px);
+    }
+}
+
+.dialog__title {
+    font-size: 2em;
+}
+
+.dialog__options {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
