@@ -1,0 +1,59 @@
+.car {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 200px;
+    position: relative;
+}
+
+.car__selector {
+    background-color: transparent;
+    border: 0;
+    height: 100%;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.car__status {
+    visibility: hidden;
+
+    &:checked {
+        &::after {
+            top: 50%;
+            margin-top: -54px;
+            content: '✅';
+            font-size: 5em;
+            position: absolute;
+            left: 50%;
+            margin-left: -54px;
+            visibility: visible;
+        }
+    }
+}
+
+.car--red {
+    background-image: url(/src/img/red.png);
+}
+
+.car--orange {
+    background-image: url(/src/img/orange.png);
+}
+
+.car--yellow {
+    background-image: url(/src/img/yellow.png);
+}
+
+.car--green {
+    background-image: url(/src/img/green.png);
+}
+
+.car--blue {
+    background-image: url(/src/img/blue.png);
+}
+
+.car--purple {
+    background-image: url(/src/img/purple.png);
+}
