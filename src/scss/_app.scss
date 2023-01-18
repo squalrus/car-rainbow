@@ -1,0 +1,7 @@
+.app {
+    height: 85vh;
+
+    @media all and (min-width: $breakpoint-desktop) {
+        height: auto;
+    }
+}

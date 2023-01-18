@@ -1,9 +1,9 @@
 .button {
-    font-weight: 700;
-    padding: 20px;
+    background-color: rgb(100, 238, 100);
     display: block;
     font-size: 1.5em;
-    background-color: rgb(100, 238, 100);
+    font-weight: 700;
+    padding: $padding-mobile;
     width: 100%;
 
     &:hover {

@@ -35,18 +35,6 @@ function CarRainbow() {
         setData(updatedData);
     }
 
-    function cancelClick() {
-        const updatedData = { ...data };
-
-        updatedData.wins = 0;
-        updatedData.colors = updatedData.colors.map((color) => {
-            return { ...color, active: false };
-        });
-
-        document.getElementById('replay').close();
-        setData(updatedData);
-    }
-
     function carClick(index) {
         const updatedData = { ...data };
         updatedData.colors[index].active = !updatedData.colors[index].active;
@@ -62,7 +50,7 @@ function CarRainbow() {
         <div>
             <GameStatus game={data} />
             <div className="car-rainbow">{cars}</div>
-            <Replay replayClick={replayClick} cancelClick={cancelClick} />
+            <Replay replayClick={replayClick} />
         </div>
     );
 }

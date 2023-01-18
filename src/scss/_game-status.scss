@@ -1,6 +1,9 @@
 .game-status {
-    font-size: 1.4em;
-    margin: 40px auto;
+    background-color: #efefef;
+    font-size: 1.2em;
+    height: $height-game-status;
+    margin: 0;
+    padding: $padding-mobile;
 
     dt {
         font-weight: 600;
@@ -14,8 +17,11 @@
         margin: 0;
     }
 
-    @media all and (min-width: 400px) {
+    @media all and (min-width: $breakpoint-desktop) {
         font-size: 2em;
+        height: auto;
+        padding: $padding-mobile $padding-desktop;
+        border-radius: 5px;
     }
 }
 
@@ -23,7 +29,8 @@
     display: grid;
     grid-template-columns: 30% 60%;
     gap: 10%;
-    @media all and (min-width: 400px) {
+
+    @media all and (min-width: $breakpoint-desktop) {
         grid-template-columns: 20% 70%;
     }
 }

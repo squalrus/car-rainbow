@@ -7,9 +7,9 @@ function Car(props) {
 
     return (
         <div key={props.color.index} className={`car car--${props.color.id} ${props.color.active ? 'car--active' : ''}`}>
-            <h2>{props.color.name}</h2>
+            <h2 className="car__title">{props.color.name}</h2>
             <input type="button" title={selectText} className="car__selector" onClick={() => props.onClick(props.color.index)} />
-            <input type="checkbox" className="car__status" onClick={() => props.onClick(props.color.index)} checked={checkState} title={checkText} />
+            <input type="checkbox" className="car__status" onClick={() => props.onClick(props.color.index)} checked={checkState} title={checkText} readOnly />
         </div>
     );
 }
