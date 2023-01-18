@@ -1,0 +1,23 @@
+.heading {
+    display: inline-block;
+    height: $height-heading;
+    width: 100%;
+
+    @media all and (min-width: $breakpoint-desktop) {
+        height: auto;
+    }
+}
+
+.heading__info {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+    margin: 0.5em 0;
+
+    @media all and (min-width: $breakpoint-desktop) {
+        font-size: 3em;
+    }
+}

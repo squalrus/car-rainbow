@@ -1,6 +1,24 @@
+// Tokens
+$breakpoint-desktop: 400px;
+
+$height-heading: 15vh;
+$height-game-status: 8vh;
+$height-car-rainbow: 67vh;
+
+$gap-mobile: 30px;
+$gap-desktop: 40px;
+
+$padding-mobile: 20px;
+$padding-desktop: 40px;
+
+// Layout
 @import '_layout.scss';
+
+// Components
+@import '_app.scss';
+@import '_button.scss';
 @import '_car-rainbow.scss';
 @import '_car.scss';
+@import '_dialog.scss';
 @import '_game-status.scss';
-@import '_modal.scss';
-@import '_button.scss';
+@import '_heading.scss';

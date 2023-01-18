@@ -1,0 +1,23 @@
+.dialog {
+    border-radius: 10px;
+    margin: auto;
+    padding: $padding-mobile;
+    position: fixed;
+
+    &::backdrop {
+        backdrop-filter: blur(2px);
+        background-color: rgba(#000, 0.35);
+    }
+}
+
+.dialog__title {
+    font-size: 1.8em;
+    margin: 0;
+    text-align: center;
+}
+
+.dialog__options {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: $padding-mobile;
+}

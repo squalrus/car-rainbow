@@ -1,9 +1,13 @@
 .car-rainbow {
     display: grid;
+    gap: $gap-mobile;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    height: $height-car-rainbow;
+    margin: $padding-mobile;
 
-    @media all and (min-width: 400px) {
+    @media all and (min-width: $breakpoint-desktop) {
+        gap: $gap-desktop;
         grid-template-columns: repeat(3, 1fr);
+        margin: $padding-desktop;
     }
 }

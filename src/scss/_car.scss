@@ -2,8 +2,12 @@
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 200px;
     position: relative;
+}
+
+.car__title {
+    font-size: 1.5em;
+    margin: 0;
 }
 
 .car__selector {
@@ -22,13 +26,13 @@
 
     &:checked {
         &::after {
-            top: 50%;
-            margin-top: -54px;
             content: '✅';
             font-size: 5em;
-            position: absolute;
             left: 50%;
             margin-left: -54px;
+            margin-top: -54px;
+            position: absolute;
+            top: 50%;
             visibility: visible;
         }
     }
