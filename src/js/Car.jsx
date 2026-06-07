@@ -1,15 +1,14 @@
 import React from 'react';
 
 function Car(props) {
-    const selectText = props.color.active ? `Unselect ${props.color.name} car!` : `Select ${props.color.name} car!`;
-    const checkText = props.color.active ? `${props.color.name} car active` : `${props.color.name} car inactive`;
-    const checkState = props.color.active ? 'checked' : '';
+    const label = props.color.active ? `${props.color.name} car, selected. Tap to unselect.` : `${props.color.name} car, not selected. Tap to select.`;
 
     return (
         <div key={props.color.index} className={`car car--${props.color.id} ${props.color.active ? 'car--active' : ''}`}>
             <h2 className="car__title">{props.color.name}</h2>
-            <input type="button" title={selectText} className="car__selector" onClick={() => props.onClick(props.color.index)} />
-            <input type="checkbox" className="car__status" onClick={() => props.onClick(props.color.index)} checked={checkState} title={checkText} readOnly />
+            <button type="button" className="car__selector" aria-pressed={props.color.active} aria-label={label} onClick={() => props.onClick(props.color.index)}>
+                <span className="car__status" aria-hidden="true"></span>
+            </button>
         </div>
     );
 }
