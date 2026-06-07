@@ -1,0 +1,40 @@
+.app-header {
+    align-items: center;
+    background-color: rgba($color-surface, 0.92);
+    backdrop-filter: blur(6px);
+    box-shadow: $shadow-sm;
+    display: flex;
+    justify-content: center;
+    padding: 0.6em 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    @media all and (min-width: $breakpoint-desktop) {
+        display: none;
+    }
+}
+
+.app-header__logo {
+    align-items: center;
+    display: flex;
+    gap: 0.3em;
+    margin: 0;
+}
+
+.app-header__icon {
+    display: inline-block;
+    font-size: 1.05em;
+    line-height: 1;
+}
+
+.app-header__title {
+    background: linear-gradient(90deg, #ff3b3b, #ff9a3b, #ffd93b, #4ade80, #38bdf8, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: 'Baloo 2', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}

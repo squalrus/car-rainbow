@@ -2,6 +2,16 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.4.0] - 2026-06-07
+
+### Added
+
+- A small sticky `.app-header` bar (`_app-header.scss`) showing the rainbow logo at the top of the viewport on mobile, giving the page an app-like feel as you scroll
+
+### Changed
+
+- The full `.heading` logo (icon + title) is now hidden on mobile and only shown at the desktop breakpoint, since the compact `.app-header` takes over that role on narrow viewports
+
 ## [1.3.0] - 2026-06-07
 
 ### Added
