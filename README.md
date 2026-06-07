@@ -4,9 +4,11 @@ A small single-page game: spot all six rainbow-colored cars and check them off. 
 
 ## Tech Stack
 
-- **React 18** — function components with hooks (`useState`, `useEffect`)
-- **Parcel 2** — zero-config bundler
-- **Sass/SCSS** — partials composed in `style.scss`
+- **React 18** (`react`, `react-dom`) — function components with hooks (`useState`, `useEffect`), no router or state library; all state lives in `CarRainbow.jsx` and flows down via props
+- **Parcel 2** — zero-config bundler; `npm start` runs the dev server, `npm run build` produces `dist/`
+- **Sass/SCSS** (`@parcel/transformer-sass`) — partials under `src/scss/` (`_app`, `_button`, `_car`, `_car-rainbow`, `_dialog`, `_game-status`, `_heading`, `_layout`) composed in `style.scss`
+- **Plain JS/JSX** — no TypeScript, no test runner, no linter config beyond Prettier (`.prettierrc`, 4-space width override for html/scss/js/jsx, single quotes, 250 print width)
+- **Static HTML entry point** (`src/index.html`) — wires up the React root (`#app`) and includes Google Analytics (`gtag.js`)
 
 ## Getting Started
 
