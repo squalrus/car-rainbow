@@ -2,6 +2,26 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.11.0] - 2026-06-07
+
+### Added
+
+- A "Reset wins" action in the Settings menu (`Settings.jsx`, `_settings.scss`): shows the current win count, asks for confirmation, then resets `data.wins` to `0` and clears the persisted `car-rainbow-wins` value via the existing `localStorage` sync effect; styled with a new `.button--ghost` modifier (`_button.scss`)
+- `src/js/colors.js`: a `RAINBOW_COLORS` constants module (`{ id, name, hex }` per color) that replaces the previously duplicated hex array and seed-color array inlined in `CarRainbow.jsx`
+- `src/scss/_tokens.scss`: a shared partial holding the design tokens (breakpoints, spacing, palettes, shape/elevation, transitions) that every other partial now pulls in via `@use 'tokens' as *`
+
+### Fixed
+
+- `carClick` and `replayClick` in `CarRainbow.jsx` now build new `colors` arrays/objects immutably (`map`/spread) instead of mutating `data.colors[index]` or reassigning a spread copy's nested array in place
+- Replaced direct `document.getElementById('replay').showModal()/.close()` calls with a `ref` forwarded into `<Replay>` (`Replay.jsx` now wraps its `<dialog>` in `forwardRef`), removing the dependency on a global DOM id
+- The initial game state is now built by a module-level `createGameData` function passed as a lazy `useState` initializer, so it's no longer recreated as a throwaway object on every render
+
+### Changed
+
+- Migrated `style.scss` and every SCSS partial from the deprecated `@import` rule to `@use`/`@forward`, resolving the Dart Sass `legacy-js-api`/`@import` deprecation warnings logged on every dev/build run
+- Upgraded `parcel` and `@parcel/transformer-sass` from `^2.8.2` to `^2.16.4`, which also resolved the `legacy-js-api` Sass warning and dropped the deprecated `stable@0.1.8` transitive dependency (pulled in previously via `svgo@2.8.0`)
+- Refreshed the `caniuse-lite`/Browserslist data so builds target current browser versions
+
 ## [1.10.0] - 2026-06-07
 
 ### Added

@@ -1,3 +1,5 @@
+@use 'tokens' as *;
+
 .button {
     background: linear-gradient(90deg, #4ade80, #38bdf8);
     border: 0;
@@ -24,5 +26,20 @@
     &:focus-visible {
         outline: 3px solid #005fcc;
         outline-offset: 2px;
+    }
+}
+
+.button--ghost {
+    background: transparent;
+    box-shadow: none;
+    color: var(--color-text);
+    border: 1px solid color-mix(in srgb, var(--color-text) 25%, transparent);
+    font-size: 1em;
+    font-weight: 600;
+    width: auto;
+
+    &:hover {
+        background: color-mix(in srgb, var(--color-text) 6%, transparent);
+        box-shadow: none;
     }
 }

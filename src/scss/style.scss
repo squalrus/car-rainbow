@@ -1,38 +1,20 @@
-// Tokens
-$breakpoint-desktop: 700px;
+@use 'tokens' as *;
 
-$gap-mobile: 30px;
-$gap-desktop: 40px;
+// Layout
+@use 'layout';
 
-$padding-mobile: 20px;
-$padding-desktop: 40px;
-
-// Palette (light, default)
-$color-bg-start: #fef6e4;
-$color-bg-end: #e0f7ff;
-$color-surface: #ffffff;
-$color-text: #2b2d42;
-$color-text-muted: #6b7280;
-$color-accent: #38bdf8;
-
-// Palette (dark)
-$color-bg-start-dark: #1b1830;
-$color-bg-end-dark: #100e1c;
-$color-surface-dark: #2a2640;
-$color-text-dark: #eef0fb;
-$color-text-muted-dark: #a8a4c2;
-
-// Shape & elevation
-$radius-sm: 10px;
-$radius-md: 18px;
-$radius-lg: 28px;
-
-$shadow-sm: 0 2px 8px rgba(43, 45, 66, 0.08);
-$shadow-md: 0 8px 24px rgba(43, 45, 66, 0.12);
-$shadow-lg: 0 16px 48px rgba(43, 45, 66, 0.18);
-
-$transition-fast: 0.15s ease;
-$transition-base: 0.25s ease;
+// Components
+@use 'app';
+@use 'app-header';
+@use 'button';
+@use 'car-rainbow';
+@use 'car';
+@use 'dialog';
+@use 'footer';
+@use 'game-status';
+@use 'heading';
+@use 'popper';
+@use 'settings';
 
 // Theme tokens — exposed as custom properties so the Settings theme choice
 // (system/light/dark) can swap palettes at runtime via [data-theme].
@@ -61,19 +43,3 @@ $transition-base: 0.25s ease;
         @include dark-theme-tokens;
     }
 }
-
-// Layout
-@import '_layout.scss';
-
-// Components
-@import '_app.scss';
-@import '_app-header.scss';
-@import '_button.scss';
-@import '_car-rainbow.scss';
-@import '_car.scss';
-@import '_dialog.scss';
-@import '_footer.scss';
-@import '_game-status.scss';
-@import '_heading.scss';
-@import '_popper.scss';
-@import '_settings.scss';

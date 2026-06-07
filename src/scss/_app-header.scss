@@ -1,3 +1,5 @@
+@use 'tokens' as *;
+
 .app-header {
     align-items: center;
     background-color: color-mix(in srgb, var(--color-surface) 92%, transparent);

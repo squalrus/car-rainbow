@@ -1,3 +1,5 @@
+@use 'tokens' as *;
+
 .settings-trigger {
     align-items: center;
     background-color: color-mix(in srgb, var(--color-surface) 92%, transparent);
@@ -58,4 +60,10 @@
     input {
         accent-color: $color-accent;
     }
+}
+
+.settings__hint {
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+    margin: 0 0 0.6em;
 }
