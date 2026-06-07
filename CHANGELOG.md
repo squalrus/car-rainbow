@@ -2,6 +2,13 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.5.0] - 2026-06-07
+
+### Added
+
+- A staggered "drive-in" entrance animation for the car tiles (`car-drive-in` keyframes in `_car.scss`): each car slides in from the left and fades/scales into place, offset by its position via a `--car-index` custom property set in `Car.jsx`; disabled for users with `prefers-reduced-motion: reduce`
+- The board now replays its entrance animation each time the game resets, by keying `Car` elements on `wins-index` in `CarRainbow.jsx` so React remounts the tiles on "Play again"
+
 ## [1.4.0] - 2026-06-07
 
 ### Added

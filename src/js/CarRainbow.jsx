@@ -24,7 +24,7 @@ function CarRainbow() {
 
     const cars = data.colors.map((color, index) => {
         const updatedColor = { ...color, index: index };
-        return <Car key={index} color={updatedColor} onClick={carClick} />;
+        return <Car key={`${data.wins}-${index}`} color={updatedColor} onClick={carClick} />;
     });
 
     const segmentSize = 360 / data.colors.length;
