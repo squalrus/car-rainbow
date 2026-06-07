@@ -28,6 +28,9 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm ci
+      - name: Run unit tests
+        id: run_unit_tests
+        run: npm run test:unit
       - name: Install Playwright browsers
         run: npx playwright install chromium
       - name: Run tests
@@ -46,15 +49,18 @@ jobs:
         with:
           script: |
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const passed = '${{ steps.run_tests.outcome }}' === 'success';
-            const summary = passed
-              ? 'Visual regression tests passed.'
-              : 'Visual regression tests failed.';
+            const describe = (outcome, label) => {
+              if (outcome === 'success') return `✅ ${label} passed`;
+              if (outcome === 'skipped') return `⏭️ ${label} skipped`;
+              return `❌ ${label} failed`;
+            };
+            const unitLine = describe('${{ steps.run_unit_tests.outcome }}', 'Unit tests (Vitest)');
+            const visualLine = describe('${{ steps.run_tests.outcome }}', 'Visual regression tests (Playwright)');
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `${summary} Download the **playwright-report** artifact from the [workflow run](${runUrl}) to browse screenshots and diffs.`,
+              body: `${unitLine}\n${visualLine}\n\nDownload the **playwright-report** artifact from the [workflow run](${runUrl}) to browse screenshots and diffs.`,
             });
 
   build_and_deploy_job:

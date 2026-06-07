@@ -2,6 +2,12 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.9.0] - 2026-06-07
+
+### Added
+
+- Component-level unit test coverage with Vitest and React Testing Library (`vitest.config.js`, `src/js/test-setup.js`, `CarRainbow.test.jsx`, `Car.test.jsx`, `GameStatus.test.jsx`): exercises car-selection toggling, win detection, the replay/reset flow, win-count persistence, and rendering of `Car`/`GameStatus`, complementing the existing Playwright visual-regression suite; run via `npm run test:unit` (or `npm run test:unit:watch`)
+
 ## [1.8.0] - 2026-06-07
 
 ### Added
