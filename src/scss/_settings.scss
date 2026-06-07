@@ -1,0 +1,61 @@
+.settings-trigger {
+    align-items: center;
+    background-color: color-mix(in srgb, var(--color-surface) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border: 0;
+    border-radius: 50%;
+    box-shadow: $shadow-sm;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.05em;
+    height: 2.4em;
+    justify-content: center;
+    padding: 0;
+    position: fixed;
+    right: $padding-mobile * 0.6;
+    top: $padding-mobile * 0.6;
+    transition: box-shadow $transition-fast;
+    width: 2.4em;
+    z-index: 20;
+
+    &:hover {
+        box-shadow: $shadow-md;
+    }
+
+    &:focus-visible {
+        outline: 2px solid #005fcc;
+        outline-offset: 1px;
+    }
+
+    @media all and (min-width: $breakpoint-desktop) {
+        right: $padding-desktop * 0.6;
+        top: $padding-desktop * 0.6;
+    }
+}
+
+.settings__group {
+    border: 0;
+    margin: $padding-mobile 0 0;
+    padding: 0;
+}
+
+.settings__legend {
+    color: var(--color-text-muted);
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin: 0 0 0.5em;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.settings__option {
+    align-items: center;
+    display: flex;
+    gap: 0.6em;
+    padding: 0.4em 0;
+
+    input {
+        accent-color: $color-accent;
+    }
+}

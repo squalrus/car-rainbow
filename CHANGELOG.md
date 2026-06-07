@@ -2,6 +2,20 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.10.0] - 2026-06-07
+
+### Added
+
+- A Settings menu (`Settings.jsx`, `_settings.scss`): a gear button fixed to the top-right corner opens a dialog where players can choose a System / Light / Dark theme; the choice is persisted to `localStorage` (`car-rainbow-theme`) and applied via a `data-theme` attribute on `<html>`, with a `prefers-color-scheme` fallback when no override is set
+- A dark color palette exposed as CSS custom properties (`--color-bg-start`, `--color-bg-end`, `--color-surface`, `--color-text`, `--color-text-muted` in `style.scss`) so the whole app — layout, cards, dialogs, footer, header — re-themes at runtime without a page reload
+- Footer copyright and "Built by" attribution (`Footer.jsx`, `_footer.scss`), with the year computed dynamically via `new Date().getFullYear()`
+- Playwright visual-regression coverage for the new Settings modal and the dark-theme start screen (`tests/visual.spec.js`), plus unit tests for `Settings.jsx`
+
+### Changed
+
+- Replaced the static, non-functional settings button placeholder in the mobile app-header with the new React-driven `Settings` trigger, removing the now-unused `.app-header__settings` styles (`src/index.html`, `_app-header.scss`)
+- `GameStatus` now receives a single derived `activeCount`/`totalCount` from `CarRainbow` instead of recomputing the active-car count itself, removing duplicated counting logic (`CarRainbow.jsx`, `GameStatus.jsx`)
+
 ## [1.9.0] - 2026-06-07
 
 ### Added

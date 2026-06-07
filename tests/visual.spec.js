@@ -21,6 +21,26 @@ test.describe('Car Rainbow visual regression', () => {
         await expect(page).toHaveScreenshot('win-dialog.png', { animations: 'disabled' });
     });
 
+    test('settings modal', async ({ page }) => {
+        await page.goto('/');
+
+        await page.getByRole('button', { name: 'Settings' }).click();
+        await expect(page.getByRole('dialog', { name: 'Settings' })).toBeVisible();
+
+        await expect(page).toHaveScreenshot('settings-modal.png', { animations: 'disabled' });
+    });
+
+    test('dark theme start screen', async ({ page }) => {
+        await page.goto('/');
+
+        await page.getByRole('button', { name: 'Settings' }).click();
+        await page.getByRole('radio', { name: 'Dark' }).click();
+        await page.getByRole('button', { name: 'Done' }).click();
+
+        await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+        await expect(page).toHaveScreenshot('dark-start-screen.png', { animations: 'disabled' });
+    });
+
     test('page does not scroll', async ({ page }) => {
         await page.goto('/');
 

@@ -7,13 +7,20 @@ $gap-desktop: 40px;
 $padding-mobile: 20px;
 $padding-desktop: 40px;
 
-// Palette
+// Palette (light, default)
 $color-bg-start: #fef6e4;
 $color-bg-end: #e0f7ff;
 $color-surface: #ffffff;
 $color-text: #2b2d42;
 $color-text-muted: #6b7280;
 $color-accent: #38bdf8;
+
+// Palette (dark)
+$color-bg-start-dark: #1b1830;
+$color-bg-end-dark: #100e1c;
+$color-surface-dark: #2a2640;
+$color-text-dark: #eef0fb;
+$color-text-muted-dark: #a8a4c2;
 
 // Shape & elevation
 $radius-sm: 10px;
@@ -26,6 +33,34 @@ $shadow-lg: 0 16px 48px rgba(43, 45, 66, 0.18);
 
 $transition-fast: 0.15s ease;
 $transition-base: 0.25s ease;
+
+// Theme tokens — exposed as custom properties so the Settings theme choice
+// (system/light/dark) can swap palettes at runtime via [data-theme].
+@mixin dark-theme-tokens {
+    --color-bg-start: #{$color-bg-start-dark};
+    --color-bg-end: #{$color-bg-end-dark};
+    --color-surface: #{$color-surface-dark};
+    --color-text: #{$color-text-dark};
+    --color-text-muted: #{$color-text-muted-dark};
+}
+
+:root {
+    --color-bg-start: #{$color-bg-start};
+    --color-bg-end: #{$color-bg-end};
+    --color-surface: #{$color-surface};
+    --color-text: #{$color-text};
+    --color-text-muted: #{$color-text-muted};
+}
+
+[data-theme='dark'] {
+    @include dark-theme-tokens;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+        @include dark-theme-tokens;
+    }
+}
 
 // Layout
 @import '_layout.scss';
@@ -41,3 +76,4 @@ $transition-base: 0.25s ease;
 @import '_game-status.scss';
 @import '_heading.scss';
 @import '_popper.scss';
+@import '_settings.scss';
