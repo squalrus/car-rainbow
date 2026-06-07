@@ -2,6 +2,13 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.6.0] - 2026-06-07
+
+### Added
+
+- SEO meta tags in `index.html`: a descriptive `<title>`, `meta description`/`keywords`/`robots`/`theme-color`, and Open Graph/Twitter Card tags so the game previews well when shared and ranks better in search results
+- A `description` field in `package.json` summarizing the game
+
 ## [1.5.0] - 2026-06-07
 
 ### Added
