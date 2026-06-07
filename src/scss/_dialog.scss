@@ -1,23 +1,28 @@
 .dialog {
-    border-radius: 10px;
+    background-color: $color-surface;
+    border: 0;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
     margin: auto;
-    padding: $padding-mobile;
+    max-width: 320px;
+    padding: $padding-mobile * 1.5;
     position: fixed;
+    width: calc(100% - #{$padding-mobile * 2});
 
     &::backdrop {
-        backdrop-filter: blur(2px);
-        background-color: rgba(#000, 0.35);
+        backdrop-filter: blur(3px);
+        background-color: rgba(#000, 0.4);
     }
 }
 
 .dialog__title {
-    font-size: 1.8em;
-    margin: 0;
+    font-size: 1.6em;
+    margin: 0 0 0.4em;
     text-align: center;
 }
 
 .dialog__options {
     display: grid;
     grid-template-columns: 1fr;
-    padding: $padding-mobile;
+    margin-top: $padding-mobile;
 }

@@ -2,6 +2,17 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.2.0] - 2026-06-07
+
+### Changed
+
+- Full visual redesign: introduced a shared design-token palette (surface/background colors, radii, shadows, transitions) in `style.scss` and rebuilt every partial around it
+- `_layout.scss`/`_app.scss` now wrap the game in a soft gradient backdrop and an elevated white card with rounded corners
+- `_game-status.scss` turns the wins/progress stats into rounded chips with a rainbow-gradient progress bar
+- `_car.scss` reworks car tiles into hoverable, lift-on-hover cards with a circular checkmark badge that scales in on selection, replacing the oversized emoji overlay
+- `_button.scss` and `_dialog.scss` get gradient buttons with hover/press feedback and a rounded, elevated "you did it" modal
+- `_heading.scss`/`_footer.scss` tightened spacing to fit the new card-based layout, and removed the now-unused fixed viewport-height tokens
+
 ## [1.1.0] - 2026-06-07
 
 ### Changed

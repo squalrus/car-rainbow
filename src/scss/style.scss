@@ -1,16 +1,31 @@
 // Tokens
 $breakpoint-desktop: 400px;
 
-$height-heading: 11vh;
-$height-game-status: 8vh;
-$height-car-rainbow: 62vh;
-$height-footer: 5vh;
-
 $gap-mobile: 30px;
 $gap-desktop: 40px;
 
 $padding-mobile: 20px;
 $padding-desktop: 40px;
+
+// Palette
+$color-bg-start: #fef6e4;
+$color-bg-end: #e0f7ff;
+$color-surface: #ffffff;
+$color-text: #2b2d42;
+$color-text-muted: #6b7280;
+$color-accent: #38bdf8;
+
+// Shape & elevation
+$radius-sm: 10px;
+$radius-md: 18px;
+$radius-lg: 28px;
+
+$shadow-sm: 0 2px 8px rgba(43, 45, 66, 0.08);
+$shadow-md: 0 8px 24px rgba(43, 45, 66, 0.12);
+$shadow-lg: 0 16px 48px rgba(43, 45, 66, 0.18);
+
+$transition-fast: 0.15s ease;
+$transition-base: 0.25s ease;
 
 // Layout
 @import '_layout.scss';

@@ -1,7 +1,6 @@
 .app {
-    height: 85vh;
-
-    @media all and (min-width: $breakpoint-desktop) {
-        height: auto;
-    }
+    background-color: $color-surface;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+    overflow: hidden;
 }
