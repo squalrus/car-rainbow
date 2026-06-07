@@ -12,7 +12,10 @@ on:
 jobs:
   test_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
+    # Windows runner so Playwright generates -win32 snapshots, matching the
+    # baselines checked into tests/visual.spec.js-snapshots/ (visual snapshot
+    # comparisons are platform-specific because rendering differs by OS).
+    runs-on: windows-latest
     name: Test Job
     steps:
       - uses: actions/checkout@v2
@@ -23,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Run tests
         run: npm test
       - name: Upload Playwright report
