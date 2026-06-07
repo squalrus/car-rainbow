@@ -2,6 +2,18 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.3.0] - 2026-06-07
+
+### Added
+
+- Sound effects via the Web Audio API (`src/js/sound.js`): a tone plays when a car is checked/unchecked or the board is replayed, and a short victory melody plays when all six cars are found
+- A rainbow border (`.app-frame`) wraps the app card and fills in segment by segment, in each car's matching color, as that car is checked off
+
+### Changed
+
+- Shrank the header title/icon/info text sizes on mobile (`_heading.scss`) so "Car Rainbow" fits comfortably on narrow phone viewports
+- Restructured `_app.scss`/`CarRainbow.jsx` to wrap the white `.app-card` surface in a new `.app-frame` that renders the progress-driven rainbow border
+
 ## [1.2.0] - 2026-06-07
 
 ### Changed

@@ -20,7 +20,7 @@
 
 .heading__icon {
     display: inline-block;
-    font-size: 1.5em;
+    font-size: 1.15em;
     line-height: 1;
 
     @media all and (min-width: $breakpoint-desktop) {
@@ -34,7 +34,7 @@
     background-clip: text;
     color: transparent;
     font-family: 'Baloo 2', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.6em;
+    font-size: 1.25em;
     font-weight: 700;
     letter-spacing: 0.02em;
 
@@ -45,7 +45,11 @@
 
 .heading__info {
     color: $color-text-muted;
-    font-size: 0.9em;
+    font-size: 0.78em;
     margin: 0.4em 0 0;
     text-align: center;
+
+    @media all and (min-width: $breakpoint-desktop) {
+        font-size: 0.9em;
+    }
 }
