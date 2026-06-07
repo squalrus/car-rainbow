@@ -1,34 +1,60 @@
 # Backlog
 
-Potential bugs, improvements, and feature ideas for Car Rainbow. Unprioritized; pulled from a review of the current codebase.
+Potential bugs, improvements, and feature ideas for Car Rainbow. Ordered by value (H → M → L), then effort (S → L).
 
 ## Bugs
 
-- **Direct state mutation in `CarRainbow.carClick`** — `updatedColor.colors[index].active = !...` mutates the nested color object/array in place before calling `setData`, relying on React re-rendering rather than producing a new object. Should use an immutable update (e.g. `colors.map(...)`) to avoid subtle re-render bugs. (`src/js/CarRainbow.jsx`)
-- **`replayClick` mutates nested array via `.map` reassignment on a shallow copy** — works today, but combined with the `carClick` mutation above, the component is one refactor away from a stale-state bug. Worth fixing both together.
-- **Direct DOM access bypassing React** — `document.getElementById('replay').showModal()/.close()` reaches outside React's declarative model and depends on a hardcoded global ID; a `ref` forwarded to the `<dialog>` would be more robust (e.g. survives multiple instances, avoids ID collisions). (`src/js/CarRainbow.jsx`, `src/js/Replay.jsx`)
-- **`gameData` object is recreated on every render** — it's only used for the initial `useState` value but is redefined inside the component body each render; should be hoisted to a module-level constant or passed as a lazy initializer (`useState(() => gameData)`).
+| Title | Effort | Value |
+|-------|--------|-------|
+| [Direct state mutation in carClick](#direct-state-mutation-in-carclick) | M | H |
+| [replayClick mutates nested array](#replayclick-mutates-nested-array) | M | H |
+| [Direct DOM access bypassing React](#direct-dom-access-bypassing-react) | M | H |
+| [gameData object recreated on every render](#gamedata-object-recreated-on-every-render) | S | M |
 
 ## Improvements
 
-- **No tests** — there's no test runner or test files at all. Adding component/unit tests (e.g. Vitest + React Testing Library) would cover the click/win logic and guard against regressions like the mutation bug above.
-- **No linting** — only Prettier formatting is configured. Adding ESLint with a React/hooks plugin (`eslint-plugin-react-hooks`) would catch issues like the direct state mutation automatically.
-- **No persistence** — `wins` and in-progress selections reset on page reload. Persisting to `localStorage` (or similar) would let players keep their win streak across sessions.
-- **Hardcoded color list** — the six colors live inline in `CarRainbow.jsx`. Extracting them to a constants/config module would make it easier to add colors, themes, or alternate car sets.
-- **Hardcoded GA tracking ID** — the Google Analytics measurement ID (`G-GD9W8LVG28`) is inline in `src/index.html`. Moving it to an environment variable (Parcel supports `.env` files) would simplify swapping between dev/staging/prod and avoid leaking prod analytics during local development.
-- **Duplicated progress-counting logic** — `GameStatus` recomputes `progress`/`max` with a manual `forEach`, which could be simplified with `colors.length` and `colors.filter((c) => c.active).length`.
-- **No accessibility audit** — worth a pass with a screen reader to confirm the car button + status indicator pairing in `Car.jsx` reads sensibly, and that the `<dialog>` traps focus and announces correctly on completion.
-- **No favicon or social preview metadata** — `src/index.html` has no `<link rel="icon">`, Open Graph, or Twitter Card tags, so shared links show no thumbnail/branding.
-- **No offline/PWA support** — a manifest + service worker (Parcel has a PWA recipe) would let the game be installed/played offline.
-- **No error boundary** — a thrown error anywhere in the tree currently blanks the page; a top-level error boundary with a friendly message would be a small, cheap improvement.
+| Title | Effort | Value |
+|-------|--------|-------|
+| [Add tests (Vitest + React Testing Library)](#add-tests-vitest--react-testing-library) | L | H |
+| [No accessibility audit](#no-accessibility-audit) | M | H |
+| [Persistence to localStorage](#persistence-to-localstorage) | M | H |
+| [Add ESLint with React/hooks plugin](#add-eslint-with-reacthooks-plugin) | M | M |
+| [Hardcoded color list refactor](#hardcoded-color-list-refactor) | S | M |
+| [Hardcoded GA tracking ID to env var](#hardcoded-ga-tracking-id-to-env-var) | S | M |
+| [No favicon or social preview metadata](#no-favicon-or-social-preview-metadata) | S | M |
+| [No error boundary](#no-error-boundary) | S | M |
+| [No offline/PWA support](#no-offlinepwa-support) | L | M |
+| [Simplify progress-counting logic](#simplify-progress-counting-logic) | S | L |
 
 ## Feature Ideas
 
-- **Difficulty levels / alternate sets** — e.g. more colors, more cars per color, a timed mode, or a "find them in order" mode.
-- **Sound effects / animations** — a small celebratory animation or chime when a car is found or the board is completed.
-- **Dark mode** — respect `prefers-color-scheme` or add a manual toggle.
-- **Shareable results** — a "share your win streak" button that builds a shareable link or image.
-- **Localization** — externalize the UI strings (currently English-only) to support other languages.
+| Title | Effort | Value |
+|-------|--------|-------|
+| [Difficulty levels / alternate sets](#difficulty-levels--alternate-sets) | L | M |
+| [Sound effects / animations](#sound-effects--animations) | M | M |
+| [Dark mode](#dark-mode) | M | M |
+| [Shareable results](#shareable-results) | M | M |
+| [Localization](#localization) | L | M |
+
+## Open
+
+### Add tests (Vitest + React Testing Library)
+
+**Type:** improvement
+**Why** — Playwright now covers end-to-end visual regression (`tests/visual.spec.js`), but there's still no unit/component coverage; adding tests would catch regressions in click/win logic and guard against mutation bugs at a finer grain than e2e screenshots can
+**Notes:** start with core game mechanics (carClick, replayClick, win detection); consider snapshot tests for render output
+
+### No accessibility audit
+
+**Type:** improvement
+**Why** — screen-reader and keyboard navigation not verified; a full a11y pass would ensure the game is usable for all players
+**Notes:** check car button + checkbox pairing in Car.jsx; verify dialog focus trap and announcements; full keyboard support (tab/arrow keys)
+
+### Persistence to localStorage
+
+**Type:** improvement
+**Why** — wins counter and game state reset on reload; persisting to localStorage would preserve player progress and win streaks across sessions
+**Notes:** store wins alongside potential future achievements/streaks; consider JSON serialization for nested state
 
 ## Brainstorm: 2026-06-07
 

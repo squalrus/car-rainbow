@@ -1,10 +1,15 @@
 .app {
-    display: block;
+    display: flex;
+    flex: 1;
+    min-height: 0;
 }
 
 .app-frame {
     background: var(--app-frame-gradient, rgba($color-text, 0.1));
     border-radius: $radius-lg;
+    display: flex;
+    flex: 1;
+    min-height: 0;
     padding: 4px;
     transition: background 0.6s ease;
 
@@ -17,6 +22,10 @@
     background-color: $color-surface;
     border-radius: calc(#{$radius-lg} - 4px);
     box-shadow: $shadow-lg;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
     overflow: hidden;
 
     @media all and (min-width: $breakpoint-desktop) {

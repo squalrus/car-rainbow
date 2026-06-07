@@ -1,16 +1,19 @@
 {
   "name": "car-rainbow",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Spot all six rainbow-colored cars and check them off — a small free browser game.",
   "source": "src/index.html",
   "scripts": {
     "build": "parcel build",
-    "start": "parcel"
+    "start": "parcel",
+    "test": "playwright test",
+    "test:update-snapshots": "playwright test --update-snapshots"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.2",
+    "@playwright/test": "^1.60.0",
     "parcel": "^2.8.2",
     "process": "^0.11.10"
   },
