@@ -2,6 +2,12 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.1.0] - 2026-06-07
+
+### Changed
+
+- Redesigned the header: shrank `.heading` to a more compact height, restyled the title as a gradient-text logo (`heading__logo`/`heading__icon`/`heading__title`) set in the new "Baloo 2" Google Font, and reworked `_heading.scss` to leave room for an upcoming settings button
+
 ## [1.0.0] - 2026-06-06
 
 ### Added
