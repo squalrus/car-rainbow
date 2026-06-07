@@ -1,0 +1,36 @@
+@keyframes popper-burst {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(0.6);
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate(var(--popper-x, 0), var(--popper-y, 0)) rotate(var(--popper-rotation, 0deg)) scale(1);
+    }
+}
+
+.popper {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: fixed;
+    z-index: 20;
+
+    @media (prefers-reduced-motion: reduce) {
+        display: none;
+    }
+}
+
+.popper__piece {
+    animation: popper-burst var(--popper-duration, 1.5s) var(--popper-delay, 0s) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    font-size: 1.7em;
+    left: 50%;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+}

@@ -2,6 +2,19 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.8.0] - 2026-06-07
+
+### Added
+
+- A celebratory "popper" animation (`Popper.jsx`, `_popper.scss`): when all six cars are found, a burst of random rainbow and car emojis flies outward from the center of the screen and fades away, with a `prefers-reduced-motion` fallback that hides it entirely
+- The win counter now persists across reloads via `localStorage` (`car-rainbow-wins` key in `CarRainbow.jsx`), so players keep their streak between visits
+- A rainbow-arc favicon (`src/img/favicon.svg`) referenced from `index.html`
+
+### Changed
+
+- Removed the 🌈 emoji from the app header and the desktop heading logo for a slimmer, more compact look (`index.html`, `_app-header.scss`, `_heading.scss`)
+- Widened the play area's `max-width` from `800px` to `1100px` so the board fills more of the screen on larger viewports instead of leaving empty side margins (`_layout.scss`)
+
 ## [1.7.0] - 2026-06-07
 
 ### Added

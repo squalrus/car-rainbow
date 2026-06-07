@@ -19,16 +19,6 @@
     margin: 0;
 }
 
-.heading__icon {
-    display: inline-block;
-    font-size: 1.15em;
-    line-height: 1;
-
-    @media all and (min-width: $breakpoint-desktop) {
-        font-size: 1.7em;
-    }
-}
-
 .heading__title {
     background: linear-gradient(90deg, #ff3b3b, #ff9a3b, #ffd93b, #4ade80, #38bdf8, #a78bfa);
     -webkit-background-clip: text;
