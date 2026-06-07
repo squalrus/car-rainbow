@@ -6,6 +6,13 @@ export default defineConfig({
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
     reporter: 'html',
+    expect: {
+        toHaveScreenshot: {
+            // Allows for minor cross-machine rendering differences (font hinting,
+            // anti-aliasing) between local snapshot generation and CI runners.
+            maxDiffPixelRatio: 0.05,
+        },
+    },
     use: {
         baseURL: 'http://localhost:1234',
         trace: 'on-first-retry',
