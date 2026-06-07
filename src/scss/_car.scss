@@ -13,29 +13,34 @@
 .car__selector {
     background-color: transparent;
     border: 0;
+    cursor: pointer;
+    display: block;
     height: 100%;
     left: 0;
     padding: 0;
     position: absolute;
     top: 0;
     width: 100%;
+
+    &:focus-visible {
+        outline: 3px solid #005fcc;
+        outline-offset: -3px;
+    }
 }
 
-.car__status {
+.car__status::after {
+    content: '✅';
+    font-size: 5em;
+    left: 50%;
+    margin-left: -54px;
+    margin-top: -54px;
+    position: absolute;
+    top: 50%;
     visibility: hidden;
+}
 
-    &:checked {
-        &::after {
-            content: '✅';
-            font-size: 5em;
-            left: 50%;
-            margin-left: -54px;
-            margin-top: -54px;
-            position: absolute;
-            top: 50%;
-            visibility: visible;
-        }
-    }
+.car--active .car__status::after {
+    visibility: visible;
 }
 
 .car--red {
