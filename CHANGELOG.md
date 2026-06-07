@@ -2,6 +2,22 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.7.0] - 2026-06-07
+
+### Added
+
+- A thin, mobile-first app-header bar (`.app-header`) with the logo and a settings button placeholder, replacing the old sticky header treatment so the game gets much more vertical space on phones (`src/index.html`, `_app-header.scss`)
+- Playwright end-to-end visual regression tests (`tests/visual.spec.js`) covering the start screen, the win-dialog flow, and a no-page-scroll assertion, with checked-in baseline snapshots and `npm test` / `npm run test:update-snapshots` scripts
+- A `test_job` in the Azure Static Web Apps GitHub Actions workflow that runs the Playwright suite on every push/PR and gates the build-and-deploy job on it passing
+- `CONTRIBUTING.md` with local setup, test-running, and PR guidelines; expanded `README.md` with a "Testing" section
+
+### Changed
+
+- The app now fills the device viewport with no page scrolling: `body`/`html` use `100dvh` with `overflow: hidden`, and the header/container/card form a flex chain that fills the available height (`_layout.scss`, `_app.scss`)
+- The car grid no longer relies on a width-driven `padding-top: 75%` aspect-ratio trick; cars now stretch to fill their grid cells via `grid-template-rows` + `flex: 1`, so the board adapts cleanly to any device aspect ratio without overflowing (`_car-rainbow.scss`, `_car.scss`)
+- Raised `$breakpoint-desktop` from `400px` to `700px` — the old value misclassified many phones (e.g. 412px-wide devices) as "desktop," hiding the mobile header and showing the desktop heading instead (`style.scss`)
+- The duplicate page heading (`.heading`) now only renders on desktop; the thin app-header covers that role on mobile, freeing more room for gameplay (`_heading.scss`)
+
 ## [1.6.0] - 2026-06-07
 
 ### Added

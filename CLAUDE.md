@@ -7,7 +7,8 @@ A small single-page game: spot all six rainbow-colored cars and check them off. 
 - **React 18** (`react`, `react-dom`) — function components with hooks (`useState`, `useEffect`), no router or state library; all state lives in `CarRainbow.jsx` and flows down via props
 - **Parcel 2** — zero-config bundler; `npm start` runs the dev server, `npm run build` produces `dist/`
 - **Sass/SCSS** (`@parcel/transformer-sass`) — partials under `src/scss/` (`_app`, `_button`, `_car`, `_car-rainbow`, `_dialog`, `_game-status`, `_heading`, `_layout`) composed in `style.scss`
-- **Plain JS/JSX**, no TypeScript, no test runner, no linter config beyond Prettier (`.prettierrc`, 4-space width override for html/scss/js/jsx, single quotes, 250 print width)
+- **Plain JS/JSX**, no TypeScript, no linter config beyond Prettier (`.prettierrc`, 4-space width override for html/scss/js/jsx, single quotes, 250 print width)
+- **Playwright** (`@playwright/test`) — end-to-end visual regression tests under `tests/`; `npm test` runs them (auto-starts the dev server), `npm run test:update-snapshots` regenerates baseline screenshots after intentional UI changes
 - **Static HTML entry point** (`src/index.html`) wires up the React root (`#app`) and includes Google Analytics (`gtag.js`)
 - **Deployment**: Azure Static Web Apps via GitHub Actions (`.github/workflows/azure-static-web-apps-*.yml`), building with `npm run build` and serving `dist/`, triggered on pushes/PRs to `main`
 
@@ -30,7 +31,7 @@ A small single-page game: spot all six rainbow-colored cars and check them off. 
 
 ## Opportunities
 
-- **No tests** — there's no test runner or any test files; adding component tests (e.g. with Vitest/React Testing Library) would catch regressions in the click/win logic
+- **No unit/component tests** — only end-to-end visual regression coverage exists (`tests/visual.spec.js`); adding component tests (e.g. with Vitest/React Testing Library) would catch regressions in the click/win logic at a finer grain
 - **No linting** — only Prettier formatting is configured; adding ESLint (with a React/hooks plugin) would catch bugs like the direct state mutation in `CarRainbow.carClick` (`updatedColor.colors[index].active = ...` mutates the array in place before `setData`)
 - **State mutation bug risk** — `carClick` and `replayClick` in `CarRainbow.jsx` spread the top-level object but mutate nested arrays/objects directly, relying on React re-rendering anyway; refactoring to immutable updates (e.g. `map`) would be more robust and idiomatic
 - **Direct DOM access from React** — `document.getElementById('replay').close()/.showModal()` bypasses React's declarative model; a `ref` on the `<dialog>` would be more idiomatic and avoid relying on global IDs

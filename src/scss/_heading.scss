@@ -1,25 +1,22 @@
 .heading {
     align-items: center;
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: $padding-mobile $padding-mobile 0;
     width: 100%;
 
     @media all and (min-width: $breakpoint-desktop) {
+        display: flex;
         padding: $padding-desktop $padding-desktop 0;
     }
 }
 
 .heading__logo {
     align-items: center;
-    display: none;
+    display: flex;
     gap: 0.3em;
     justify-content: center;
     margin: 0;
-
-    @media all and (min-width: $breakpoint-desktop) {
-        display: flex;
-    }
 }
 
 .heading__icon {
