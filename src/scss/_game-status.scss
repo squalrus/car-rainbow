@@ -1,51 +1,68 @@
 .game-status {
-    background-color: #efefef;
-    font-size: 1.2em;
-    height: $height-game-status;
-    margin: 0;
-    padding: $padding-mobile;
-
-    dt {
-        font-weight: 600;
-
-        &::after {
-            content: ': ';
-        }
-    }
-
-    dd {
-        margin: 0;
-    }
+    display: grid;
+    gap: $gap-mobile * 0.5;
+    grid-template-columns: repeat(2, 1fr);
+    margin: $padding-mobile;
 
     @media all and (min-width: $breakpoint-desktop) {
-        font-size: 2em;
-        height: auto;
-        padding: $padding-mobile $padding-desktop;
-        border-radius: 5px;
+        gap: $gap-desktop * 0.5;
+        margin: $padding-desktop $padding-desktop * 0.5;
     }
 }
 
 .game-status__item {
-    display: grid;
-    grid-template-columns: 30% 60%;
-    gap: 10%;
+    background-color: rgba($color-accent, 0.08);
+    border-radius: $radius-md;
+    padding: $padding-mobile * 0.7 $padding-mobile;
+
+    dt {
+        color: $color-text-muted;
+        font-size: 0.8em;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        margin: 0 0 0.3em;
+        text-transform: uppercase;
+    }
+
+    dd {
+        font-size: 1.6em;
+        font-weight: 700;
+        margin: 0;
+    }
 
     @media all and (min-width: $breakpoint-desktop) {
-        grid-template-columns: 20% 70%;
+        padding: $padding-mobile $padding-desktop * 0.6;
+
+        dt {
+            font-size: 0.9em;
+        }
+
+        dd {
+            font-size: 2em;
+        }
     }
 }
 
 .game-status__progress {
-    border-radius: 0;
+    appearance: none;
+    border: 0;
+    border-radius: $radius-sm;
+    height: 14px;
     width: 100%;
-    height: 20px;
 
     &::-webkit-progress-bar {
-        background-color: rgb(203, 211, 214);
-        border-radius: 7px;
+        background-color: rgba($color-accent, 0.18);
+        border-radius: $radius-sm;
     }
 
     &::-webkit-progress-value {
-        background-color: rgb(0, 173, 0);
+        background: linear-gradient(90deg, #ff3b3b, #ff9a3b, #ffd93b, #4ade80, #38bdf8, #a78bfa);
+        border-radius: $radius-sm;
+        transition: width $transition-base;
+    }
+
+    &::-moz-progress-bar {
+        background: linear-gradient(90deg, #ff3b3b, #ff9a3b, #ffd93b, #4ade80, #38bdf8, #a78bfa);
+        border-radius: $radius-sm;
     }
 }

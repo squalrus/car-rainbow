@@ -1,12 +1,28 @@
 .button {
-    background-color: rgb(100, 238, 100);
+    background: linear-gradient(90deg, #4ade80, #38bdf8);
+    border: 0;
+    border-radius: $radius-sm;
+    box-shadow: $shadow-sm;
+    color: #ffffff;
+    cursor: pointer;
     display: block;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: 700;
-    padding: $padding-mobile;
+    padding: $padding-mobile * 0.8 $padding-mobile;
+    transition: box-shadow $transition-fast, transform $transition-fast;
     width: 100%;
 
     &:hover {
-        background-color: rgb(163, 255, 163);
+        box-shadow: $shadow-md;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:focus-visible {
+        outline: 3px solid #005fcc;
+        outline-offset: 2px;
     }
 }

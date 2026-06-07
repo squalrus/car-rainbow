@@ -2,29 +2,29 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    height: $height-heading;
-    justify-content: center;
+    padding: $padding-mobile $padding-mobile 0;
     width: 100%;
 
     @media all and (min-width: $breakpoint-desktop) {
-        height: auto;
+        padding: $padding-desktop $padding-desktop 0;
     }
 }
 
 .heading__logo {
     align-items: center;
     display: flex;
-    gap: 0.25em;
+    gap: 0.3em;
     justify-content: center;
     margin: 0;
 }
 
 .heading__icon {
-    font-size: 1.4em;
+    display: inline-block;
+    font-size: 1.5em;
     line-height: 1;
 
     @media all and (min-width: $breakpoint-desktop) {
-        font-size: 1.6em;
+        font-size: 1.7em;
     }
 }
 
@@ -34,17 +34,18 @@
     background-clip: text;
     color: transparent;
     font-family: 'Baloo 2', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.6em;
     font-weight: 700;
     letter-spacing: 0.02em;
 
     @media all and (min-width: $breakpoint-desktop) {
-        font-size: 2.1em;
+        font-size: 2.3em;
     }
 }
 
 .heading__info {
-    font-size: 0.85em;
-    margin: 0.3em 0 0;
+    color: $color-text-muted;
+    font-size: 0.9em;
+    margin: 0.4em 0 0;
     text-align: center;
 }

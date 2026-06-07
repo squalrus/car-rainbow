@@ -1,13 +1,37 @@
 .car {
-    background-position: 50% 50%;
+    background-color: rgba($color-text, 0.03);
+    background-position: 50% 60%;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 75%;
+    border-radius: $radius-md;
+    box-shadow: $shadow-sm;
+    overflow: hidden;
+    padding-top: 75%;
     position: relative;
+    transition: box-shadow $transition-base, transform $transition-base;
+
+    &:hover {
+        box-shadow: $shadow-md;
+        transform: translateY(-3px);
+    }
+
+    &--active {
+        background-color: rgba(74, 222, 128, 0.12);
+        box-shadow: 0 0 0 3px #4ade80, $shadow-md;
+    }
 }
 
 .car__title {
-    font-size: 1.5em;
+    color: $color-text;
+    font-size: 1.1em;
+    left: $padding-mobile * 0.5;
     margin: 0;
+    position: absolute;
+    top: $padding-mobile * 0.4;
+
+    @media all and (min-width: $breakpoint-desktop) {
+        font-size: 1.3em;
+    }
 }
 
 .car__selector {
@@ -28,19 +52,30 @@
     }
 }
 
-.car__status::after {
-    content: '✅';
-    font-size: 5em;
-    left: 50%;
-    margin-left: -54px;
-    margin-top: -54px;
+.car__status {
+    align-items: center;
+    background-color: $color-surface;
+    border-radius: 50%;
+    box-shadow: $shadow-sm;
+    bottom: $padding-mobile * 0.5;
+    display: flex;
+    height: 2.2em;
+    justify-content: center;
     position: absolute;
-    top: 50%;
-    visibility: hidden;
+    right: $padding-mobile * 0.5;
+    transform: scale(0);
+    transition: transform $transition-fast;
+    width: 2.2em;
 }
 
-.car--active .car__status::after {
-    visibility: visible;
+.car__status::after {
+    content: '✅';
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+.car--active .car__status {
+    transform: scale(1);
 }
 
 .car--red {

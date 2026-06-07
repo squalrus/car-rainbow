@@ -1,10 +1,10 @@
 .footer {
-    height: $height-footer;
+    padding: $padding-mobile * 0.5 0;
     text-align: center;
 }
 
 .footer__version {
-    color: #999;
+    color: $color-text-muted;
     font-size: 0.8em;
     margin: 0;
 }
