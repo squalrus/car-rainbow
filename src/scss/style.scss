@@ -32,6 +32,7 @@ $transition-base: 0.25s ease;
 
 // Components
 @import '_app.scss';
+@import '_app-header.scss';
 @import '_button.scss';
 @import '_car-rainbow.scss';
 @import '_car.scss';
