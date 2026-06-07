@@ -1,0 +1,13 @@
+import '@testing-library/jest-dom/vitest';
+
+// jsdom doesn't implement <dialog> behavior; stub it so Replay's showModal()/close() calls work.
+HTMLDialogElement.prototype.showModal = function () {
+    this.setAttribute('open', '');
+};
+HTMLDialogElement.prototype.close = function () {
+    this.removeAttribute('open');
+};
+
+beforeEach(() => {
+    localStorage.clear();
+});

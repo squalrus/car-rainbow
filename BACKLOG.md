@@ -15,12 +15,13 @@ Potential bugs, improvements, and feature ideas for Car Rainbow. Ordered by valu
 
 | Title | Effort | Value |
 |-------|--------|-------|
-| [Add tests (Vitest + React Testing Library)](#add-tests-vitest--react-testing-library) | L | H |
 | [No accessibility audit](#no-accessibility-audit) | M | H |
+| [Add copyright and built by to footer](#add-copyright-and-built-by-to-footer) | S | M |
 | [Add ESLint with React/hooks plugin](#add-eslint-with-reacthooks-plugin) | M | M |
 | [Hardcoded color list refactor](#hardcoded-color-list-refactor) | S | M |
 | [Hardcoded GA tracking ID to env var](#hardcoded-ga-tracking-id-to-env-var) | S | M |
 | [No error boundary](#no-error-boundary) | S | M |
+| [Outdated browserslist data](#outdated-browserslist-data) | S | L |
 | [No offline/PWA support](#no-offlinepwa-support) | L | M |
 | [Simplify progress-counting logic](#simplify-progress-counting-logic) | S | L |
 
@@ -34,6 +35,7 @@ Potential bugs, improvements, and feature ideas for Car Rainbow. Ordered by valu
 | [Dark mode](#dark-mode) | M | M |
 | [Shareable results](#shareable-results) | M | M |
 | [Localization](#localization) | L | M |
+| [Reset wins in settings menu](#reset-wins-in-settings-menu) | S | M |
 
 ## Open
 
@@ -61,17 +63,17 @@ Potential bugs, improvements, and feature ideas for Car Rainbow. Ordered by valu
 **Why** — `gameData` is a plain object literal defined inside the `CarRainbow` function body, so it's recreated on every render even though it only seeds the initial `useState`; this is wasted allocation and could mislead a reader into thinking it reflects live state
 **Notes:** move `gameData` outside the component, or inline it as a lazy initializer: `useState(() => ({ wins: 0, colors: [...] }))`
 
-### Add tests (Vitest + React Testing Library)
-
-**Type:** improvement
-**Why** — Playwright now covers end-to-end visual regression (`tests/visual.spec.js`), but there's still no unit/component coverage; adding tests would catch regressions in click/win logic and guard against mutation bugs at a finer grain than e2e screenshots can
-**Notes:** start with core game mechanics (carClick, replayClick, win detection); consider snapshot tests for render output
-
 ### No accessibility audit
 
 **Type:** improvement
 **Why** — screen-reader and keyboard navigation not verified; a full a11y pass would ensure the game is usable for all players
 **Notes:** check car button + checkbox pairing in Car.jsx; verify dialog focus trap and announcements; full keyboard support (tab/arrow keys)
+
+### Add copyright and built by to footer
+
+**Type:** improvement
+**Why** — displays copyright and attribution info in the footer for transparency and credibility
+**Notes:** update `Footer.jsx` to include a copyright notice (e.g., "© 2026 Chad Schulz") and "Built by" attribution; consider using the current year dynamically via `new Date().getFullYear()`
 
 ### Add ESLint with React/hooks plugin
 
@@ -96,6 +98,12 @@ Potential bugs, improvements, and feature ideas for Car Rainbow. Ordered by valu
 **Type:** improvement
 **Why** — there's no React error boundary around `<CarRainbow />`; an unexpected render error currently produces a blank page with no recovery path or user-facing message
 **Notes:** add a small class-based `ErrorBoundary` (or lightweight library) wrapping the root render in `index.jsx`, showing a friendly fallback with a reload prompt
+
+### Outdated browserslist data
+
+**Type:** improvement
+**Why** — the dev server logs a warning that `caniuse-lite` (used by Browserslist, which underpins Parcel's CSS/JS autoprefixing and target resolution) is outdated, which can cause builds to target stale browser versions
+**Notes:** run `npx update-browserslist-db@latest` to refresh the `caniuse-lite` data; consider documenting this as a periodic maintenance task
 
 ### No offline/PWA support
 
@@ -144,6 +152,12 @@ Potential bugs, improvements, and feature ideas for Car Rainbow. Ordered by valu
 **Type:** feature
 **Why** — all UI text is hardcoded in English; localization would let the game reach non-English-speaking players and is common groundwork for any future expansion
 **Notes:** extract strings to a translation resource (e.g. `react-intl` or a lightweight custom dictionary); prioritize locales based on analytics traffic
+
+### Reset wins in settings menu
+
+**Type:** feature
+**Why** — players who want a fresh start (or who are testing/demoing the game) currently have no way to clear their win count short of clearing browser storage manually
+**Notes:** add a "Reset wins" action to the proposed [Settings menu (theme, difficulty, colors)](#settings-menu-theme-difficulty-colors); should clear the persisted win count in `localStorage` (see persistence work shipped in v1.8.0) and update `data.wins` back to `0`; consider a confirmation prompt to avoid accidental resets
 
 ## Brainstorm: 2026-06-07
 
