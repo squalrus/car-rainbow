@@ -1,6 +1,6 @@
 {
   "name": "car-rainbow",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "Spot all six rainbow-colored cars and check them off — a small free browser game.",
   "source": "src/index.html",
   "scripts": {
@@ -14,13 +14,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.8.2",
+    "@parcel/transformer-sass": "^2.16.4",
     "@playwright/test": "^1.60.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "jsdom": "^28.1.0",
-    "parcel": "^2.8.2",
+    "parcel": "^2.16.4",
     "process": "^0.11.10",
     "vitest": "^4.1.8"
   },

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-function Replay(props) {
+const Replay = forwardRef(function Replay(props, ref) {
     return (
-        <dialog id="replay" className="dialog" aria-labelledby="replay-title">
+        <dialog ref={ref} className="dialog" aria-labelledby="replay-title">
             <h3 id="replay-title" className="dialog__title">
                 🌈 You did it! 🌈
             </h3>
@@ -13,6 +13,6 @@ function Replay(props) {
             </div>
         </dialog>
     );
-}
+});
 
 export default Replay;

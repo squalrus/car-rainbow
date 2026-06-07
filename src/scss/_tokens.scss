@@ -1,0 +1,35 @@
+// Tokens
+$breakpoint-desktop: 700px;
+
+$gap-mobile: 30px;
+$gap-desktop: 40px;
+
+$padding-mobile: 20px;
+$padding-desktop: 40px;
+
+// Palette (light, default)
+$color-bg-start: #fef6e4;
+$color-bg-end: #e0f7ff;
+$color-surface: #ffffff;
+$color-text: #2b2d42;
+$color-text-muted: #6b7280;
+$color-accent: #38bdf8;
+
+// Palette (dark)
+$color-bg-start-dark: #1b1830;
+$color-bg-end-dark: #100e1c;
+$color-surface-dark: #2a2640;
+$color-text-dark: #eef0fb;
+$color-text-muted-dark: #a8a4c2;
+
+// Shape & elevation
+$radius-sm: 10px;
+$radius-md: 18px;
+$radius-lg: 28px;
+
+$shadow-sm: 0 2px 8px rgba(43, 45, 66, 0.08);
+$shadow-md: 0 8px 24px rgba(43, 45, 66, 0.12);
+$shadow-lg: 0 16px 48px rgba(43, 45, 66, 0.18);
+
+$transition-fast: 0.15s ease;
+$transition-base: 0.25s ease;

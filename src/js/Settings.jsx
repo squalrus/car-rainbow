@@ -6,7 +6,7 @@ const THEME_OPTIONS = [
     { value: 'dark', label: 'Dark' },
 ];
 
-function Settings({ theme, onThemeChange }) {
+function Settings({ theme, onThemeChange, wins, onResetWins }) {
     const dialogRef = useRef(null);
 
     function open() {
@@ -20,6 +20,12 @@ function Settings({ theme, onThemeChange }) {
     function handleBackdropClick(event) {
         if (event.target === dialogRef.current) {
             close();
+        }
+    }
+
+    function resetWins() {
+        if (window.confirm('Reset your win count back to 0?')) {
+            onResetWins();
         }
     }
 
@@ -40,6 +46,15 @@ function Settings({ theme, onThemeChange }) {
                             {option.label}
                         </label>
                     ))}
+                </fieldset>
+                <fieldset className="settings__group">
+                    <legend className="settings__legend">Win count</legend>
+                    <p className="settings__hint">
+                        You've won {wins} {wins === 1 ? 'time' : 'times'}.
+                    </p>
+                    <button type="button" className="button button--ghost" onClick={resetWins}>
+                        Reset wins
+                    </button>
                 </fieldset>
                 <div className="dialog__options">
                     <button type="button" className="button" onClick={close}>
