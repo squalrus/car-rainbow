@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Car from './Car';
 import Footer from './Footer';
 import GameStatus from './GameStatus';
+import Popper from './Popper';
 import Replay from './Replay';
 import { playCheckSound, playReplaySound, playWinSong } from './sound';
 
 const RAINBOW_COLORS = ['#ff3b3b', '#ff9a3b', '#ffd93b', '#4ade80', '#38bdf8', '#a78bfa'];
+const WINS_STORAGE_KEY = 'car-rainbow-wins';
 
 function CarRainbow() {
     const gameData = {
-        wins: 0,
+        wins: Number(localStorage.getItem(WINS_STORAGE_KEY)) || 0,
         colors: [
             { id: 'red', name: 'Red', active: false },
             { id: 'orange', name: 'Orange', active: false },
@@ -21,6 +23,11 @@ function CarRainbow() {
     };
 
     const [data, setData] = useState(gameData);
+    const [showPopper, setShowPopper] = useState(false);
+
+    useEffect(() => {
+        localStorage.setItem(WINS_STORAGE_KEY, String(data.wins));
+    }, [data.wins]);
 
     const cars = data.colors.map((color, index) => {
         const updatedColor = { ...color, index: index };
@@ -45,6 +52,7 @@ function CarRainbow() {
 
         playReplaySound();
         document.getElementById('replay').close();
+        setShowPopper(false);
         setData(updatedData);
     }
 
@@ -56,6 +64,7 @@ function CarRainbow() {
 
         if (updatedData.colors.every((color) => color.active)) {
             playWinSong();
+            setShowPopper(true);
             document.getElementById('replay').showModal();
         }
 
@@ -68,6 +77,7 @@ function CarRainbow() {
                 <GameStatus game={data} />
                 <div className="car-rainbow">{cars}</div>
                 <Replay replayClick={replayClick} />
+                <Popper active={showPopper} />
                 <Footer />
             </div>
         </div>
