@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Car from './Car';
+import Footer from './Footer';
 import GameStatus from './GameStatus';
 import Replay from './Replay';
 
@@ -51,6 +52,7 @@ function CarRainbow() {
             <GameStatus game={data} />
             <div className="car-rainbow">{cars}</div>
             <Replay replayClick={replayClick} />
+            <Footer />
         </div>
     );
 }

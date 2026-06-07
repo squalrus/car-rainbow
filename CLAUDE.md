@@ -19,8 +19,14 @@ A small single-page game: spot all six rainbow-colored cars and check them off. 
 - `src/js/Car.jsx` — individual car tile (button + checkbox)
 - `src/js/GameStatus.jsx` — wins counter and progress bar
 - `src/js/Replay.jsx` — `<dialog>` shown on completion with a "Play again" button
+- `src/js/Footer.jsx` — page footer displaying the current app version (read from `package.json`)
 - `src/img/*.png` — car artwork per color
 - `src/scss/*` — styling partials
+
+## Versioning
+
+- The app version shown in the UI footer (`Footer.jsx`) is read directly from `package.json`'s `version` field
+- **Bump the `version` in `package.json` with every change** that lands on `main`, and add a corresponding entry to `CHANGELOG.md`, so the footer always reflects an accurate, traceable version
 
 ## Opportunities
 

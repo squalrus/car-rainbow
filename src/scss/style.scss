@@ -3,7 +3,8 @@ $breakpoint-desktop: 400px;
 
 $height-heading: 15vh;
 $height-game-status: 8vh;
-$height-car-rainbow: 67vh;
+$height-car-rainbow: 62vh;
+$height-footer: 5vh;
 
 $gap-mobile: 30px;
 $gap-desktop: 40px;
@@ -20,5 +21,6 @@ $padding-desktop: 40px;
 @import '_car-rainbow.scss';
 @import '_car.scss';
 @import '_dialog.scss';
+@import '_footer.scss';
 @import '_game-status.scss';
 @import '_heading.scss';
