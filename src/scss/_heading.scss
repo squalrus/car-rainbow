@@ -1,6 +1,9 @@
 .heading {
-    display: inline-block;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     height: $height-heading;
+    justify-content: center;
     width: 100%;
 
     @media all and (min-width: $breakpoint-desktop) {
@@ -8,16 +11,40 @@
     }
 }
 
-.heading__info {
-    text-align: center;
+.heading__logo {
+    align-items: center;
+    display: flex;
+    gap: 0.25em;
+    justify-content: center;
+    margin: 0;
 }
 
-h1 {
-    text-align: center;
-    font-size: 2em;
-    margin: 0.5em 0;
+.heading__icon {
+    font-size: 1.4em;
+    line-height: 1;
 
     @media all and (min-width: $breakpoint-desktop) {
-        font-size: 3em;
+        font-size: 1.6em;
     }
+}
+
+.heading__title {
+    background: linear-gradient(90deg, #ff3b3b, #ff9a3b, #ffd93b, #4ade80, #38bdf8, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: 'Baloo 2', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+
+    @media all and (min-width: $breakpoint-desktop) {
+        font-size: 2.1em;
+    }
+}
+
+.heading__info {
+    font-size: 0.85em;
+    margin: 0.3em 0 0;
+    text-align: center;
 }
