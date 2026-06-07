@@ -1,6 +1,6 @@
 .app-header {
     align-items: center;
-    background-color: rgba($color-surface, 0.92);
+    background-color: color-mix(in srgb, var(--color-surface) 92%, transparent);
     backdrop-filter: blur(6px);
     box-shadow: $shadow-sm;
     display: flex;
@@ -30,28 +30,4 @@
     font-size: 1em;
     font-weight: 700;
     letter-spacing: 0.02em;
-}
-
-.app-header__settings {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    font-size: 1.05em;
-    height: 2em;
-    justify-content: center;
-    padding: 0;
-    transition: background-color $transition-fast;
-    width: 2em;
-
-    &:hover {
-        background-color: rgba($color-text, 0.06);
-    }
-
-    &:focus-visible {
-        outline: 2px solid #005fcc;
-        outline-offset: 1px;
-    }
 }

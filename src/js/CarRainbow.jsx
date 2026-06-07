@@ -4,10 +4,12 @@ import Footer from './Footer';
 import GameStatus from './GameStatus';
 import Popper from './Popper';
 import Replay from './Replay';
+import Settings from './Settings';
 import { playCheckSound, playReplaySound, playWinSong } from './sound';
 
 const RAINBOW_COLORS = ['#ff3b3b', '#ff9a3b', '#ffd93b', '#4ade80', '#38bdf8', '#a78bfa'];
 const WINS_STORAGE_KEY = 'car-rainbow-wins';
+const THEME_STORAGE_KEY = 'car-rainbow-theme';
 
 function CarRainbow() {
     const gameData = {
@@ -24,15 +26,28 @@ function CarRainbow() {
 
     const [data, setData] = useState(gameData);
     const [showPopper, setShowPopper] = useState(false);
+    const [theme, setTheme] = useState(() => localStorage.getItem(THEME_STORAGE_KEY) || 'system');
 
     useEffect(() => {
         localStorage.setItem(WINS_STORAGE_KEY, String(data.wins));
     }, [data.wins]);
 
+    useEffect(() => {
+        if (theme === 'system') {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.removeItem(THEME_STORAGE_KEY);
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem(THEME_STORAGE_KEY, theme);
+        }
+    }, [theme]);
+
     const cars = data.colors.map((color, index) => {
         const updatedColor = { ...color, index: index };
         return <Car key={`${data.wins}-${index}`} color={updatedColor} onClick={carClick} />;
     });
+
+    const activeCount = data.colors.filter((color) => color.active).length;
 
     const segmentSize = 360 / data.colors.length;
     const frameGradient = `conic-gradient(${data.colors
@@ -73,8 +88,9 @@ function CarRainbow() {
 
     return (
         <div className="app-frame" style={{ '--app-frame-gradient': frameGradient }}>
+            <Settings theme={theme} onThemeChange={setTheme} />
             <div className="app-card">
-                <GameStatus game={data} />
+                <GameStatus wins={data.wins} activeCount={activeCount} totalCount={data.colors.length} />
                 <div className="car-rainbow">{cars}</div>
                 <Replay replayClick={replayClick} />
                 <Popper active={showPopper} />

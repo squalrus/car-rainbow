@@ -16,7 +16,7 @@
     padding: $padding-mobile * 0.7 $padding-mobile;
 
     dt {
-        color: $color-text-muted;
+        color: var(--color-text-muted);
         font-size: 0.8em;
         font-weight: 600;
         letter-spacing: 0.04em;

@@ -74,7 +74,8 @@ describe('CarRainbow', () => {
         COLOR_NAMES.forEach((name) => {
             expect(getCarButton(name)).toHaveAttribute('aria-pressed', 'false');
         });
-        expect(screen.getByRole('dialog', { hidden: true })).not.toHaveAttribute('open');
+        const replayDialog = screen.getAllByRole('dialog', { hidden: true }).find((dialog) => dialog.textContent.includes('You did it'));
+        expect(replayDialog).not.toHaveAttribute('open');
     });
 
     it('persists the win count to localStorage across mounts', async () => {

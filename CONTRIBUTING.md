@@ -33,6 +33,26 @@ npm run build
 
 ## Running the test suite
 
+The project has two layers of tests: Vitest unit/component tests and Playwright end-to-end visual regression tests.
+
+### Unit/component tests
+
+Component and unit tests live alongside the source as `*.test.jsx` (e.g. `src/js/CarRainbow.test.jsx`) and run with [Vitest](https://vitest.dev) and [React Testing Library](https://testing-library.com/react). They cover click/win logic and rendering at a finer grain than the Playwright suite.
+
+Run them once:
+
+```sh
+npm run test:unit
+```
+
+Or in watch mode while developing:
+
+```sh
+npm run test:unit:watch
+```
+
+### End-to-end visual regression tests
+
 The project uses [Playwright](https://playwright.dev) for end-to-end visual regression testing (`tests/visual.spec.js`). The test runner starts the dev server for you — no need to run `npm start` separately.
 
 Install the Playwright browser binaries (first time only, or after upgrading `@playwright/test`):
@@ -64,5 +84,5 @@ npm run test:update-snapshots
 ## Before opening a PR
 
 - Format your code with Prettier (`.prettierrc` is checked in; most editors will pick it up automatically)
-- Run `npm test` and make sure it passes — CI runs the same suite and will block merges on failure
+- Run `npm run test:unit` and `npm test` and make sure both pass — CI runs the same suites and will block merges on failure
 - **Bump the `version` in `package.json`** and add an entry to `CHANGELOG.md` for any change landing on `main` — the footer reads its version directly from `package.json`, so this keeps it accurate and traceable (see the "Versioning" section in `CLAUDE.md`)

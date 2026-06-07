@@ -1,5 +1,6 @@
 .dialog {
-    background-color: $color-surface;
+    background-color: var(--color-surface);
+    color: var(--color-text);
     border: 0;
     border-radius: $radius-lg;
     box-shadow: $shadow-lg;

@@ -1,6 +1,6 @@
 {
   "name": "car-rainbow",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "Spot all six rainbow-colored cars and check them off — a small free browser game.",
   "source": "src/index.html",
   "scripts": {
