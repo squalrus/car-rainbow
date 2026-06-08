@@ -6,6 +6,7 @@ import GameStatus from './GameStatus';
 import Popper from './Popper';
 import Replay from './Replay';
 import Settings from './Settings';
+import { buildShareText } from './share';
 import { playCheckSound, playReplaySound, playWinSong } from './sound';
 
 const WINS_STORAGE_KEY = 'car-rainbow-wins';
@@ -15,13 +16,14 @@ const DIFFICULTY_STORAGE_KEY = 'car-rainbow-difficulty';
 
 function buildColors(extendedColors) {
     const palette = extendedColors ? [...RAINBOW_COLORS, ...EXTENDED_COLORS] : RAINBOW_COLORS;
-    return palette.map(({ id, name, hex }) => ({ id, name, hex, active: false }));
+    return palette.map(({ id, name, hex, emoji }) => ({ id, name, hex, emoji, active: false }));
 }
 
 function createGameData(extendedColors) {
     return {
         wins: Number(localStorage.getItem(WINS_STORAGE_KEY)) || 0,
         colors: buildColors(extendedColors),
+        foundOrder: [],
     };
 }
 
@@ -69,6 +71,7 @@ function CarRainbow() {
         setData((previousData) => ({
             wins: previousData.wins + 1,
             colors: previousData.colors.map((color) => ({ ...color, active: false })),
+            foundOrder: [],
         }));
     }
 
@@ -81,7 +84,7 @@ function CarRainbow() {
         localStorage.setItem(EXTENDED_COLORS_STORAGE_KEY, String(enabled));
         setShowPopper(false);
         replayRef.current?.close();
-        setData((previousData) => ({ wins: previousData.wins, colors: buildColors(enabled) }));
+        setData((previousData) => ({ wins: previousData.wins, colors: buildColors(enabled), foundOrder: [] }));
     }
 
     function changeDifficulty(value) {
@@ -89,7 +92,7 @@ function CarRainbow() {
         localStorage.setItem(DIFFICULTY_STORAGE_KEY, value);
         setShowPopper(false);
         replayRef.current?.close();
-        setData((previousData) => ({ ...previousData, colors: previousData.colors.map((color) => ({ ...color, active: false })) }));
+        setData((previousData) => ({ ...previousData, colors: previousData.colors.map((color) => ({ ...color, active: false })), foundOrder: [] }));
     }
 
     function carClick(index) {
@@ -99,6 +102,7 @@ function CarRainbow() {
         }
 
         const updatedColors = data.colors.map((color, i) => (i === index ? { ...color, active: !color.active } : color));
+        const updatedFoundOrder = updatedColors[index].active ? [...data.foundOrder, index] : data.foundOrder.filter((i) => i !== index);
 
         playCheckSound(updatedColors[index].active);
 
@@ -108,8 +112,10 @@ function CarRainbow() {
             replayRef.current?.showModal();
         }
 
-        setData({ ...data, colors: updatedColors });
+        setData({ ...data, colors: updatedColors, foundOrder: updatedFoundOrder });
     }
+
+    const shareText = buildShareText(data.wins + 1, data.colors, data.foundOrder);
 
     return (
         <div className="app-frame" style={{ '--app-frame-gradient': frameGradient }}>
@@ -126,7 +132,7 @@ function CarRainbow() {
             <div className="app-card">
                 <GameStatus wins={data.wins} activeCount={activeCount} totalCount={data.colors.length} />
                 <div className={`car-rainbow ${extendedColors ? 'car-rainbow--extended' : ''}`}>{cars}</div>
-                <Replay ref={replayRef} replayClick={replayClick} />
+                <Replay ref={replayRef} replayClick={replayClick} shareText={shareText} />
                 <Popper active={showPopper} />
                 <Footer />
             </div>

@@ -81,6 +81,35 @@ describe('CarRainbow', () => {
         expect(screen.getByText('🌈 You did it! 🌈')).toBeInTheDocument();
     });
 
+    it('copies an emoji-grid result encoding the find order to the clipboard', async () => {
+        const user = userEvent.setup();
+        const writeText = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue(undefined);
+        render(<CarRainbow />);
+
+        await findAllCars(user);
+        await user.click(screen.getByRole('button', { name: 'Copy result' }));
+
+        expect(writeText).toHaveBeenLastCalledWith('Car Rainbow — Win #1: 🟥🟧🟨🟩🟦🟪');
+        expect(await screen.findByRole('button', { name: 'Copied!' })).toBeInTheDocument();
+    });
+
+    it('opens the native share sheet instead of copying when the Web Share API is available', async () => {
+        const user = userEvent.setup();
+        const share = vi.fn().mockResolvedValue(undefined);
+        Object.defineProperty(navigator, 'share', { value: share, configurable: true });
+
+        try {
+            render(<CarRainbow />);
+            await findAllCars(user);
+            await user.click(screen.getByRole('button', { name: 'Share result' }));
+
+            expect(share).toHaveBeenCalledWith({ text: 'Car Rainbow — Win #1: 🟥🟧🟨🟩🟦🟪' });
+            expect(screen.queryByRole('button', { name: 'Copied!' })).not.toBeInTheDocument();
+        } finally {
+            delete navigator.share;
+        }
+    });
+
     it('resets the board and increments wins on replay', async () => {
         const user = userEvent.setup();
         render(<CarRainbow />);

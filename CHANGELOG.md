@@ -2,6 +2,12 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.14.0] - 2026-06-07
+
+### Added
+
+- **Shareable results.** Win results can now be shared via the native OS share sheet on mobile (iOS Safari, Chrome Android, etc. via the Web Share API) or copied to the clipboard on desktop, displaying an emoji-grid encoding the find-order and win counter (e.g. "Car Rainbow — Win #1: 🟥🟧🟨🟩🟦🟪"); added emoji fields to color definitions in `src/js/colors.js`, tracking of find-order in `CarRainbow.jsx` state, a new `buildShareText` helper in `src/js/share.js`, and a "Share/Copy result" button in the win dialog (`Replay.jsx`)
+
 ## [1.13.0] - 2026-06-07
 
 ### Added
