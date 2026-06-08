@@ -89,7 +89,7 @@ describe('CarRainbow', () => {
         await findAllCars(user);
         await user.click(screen.getByRole('button', { name: 'Copy result' }));
 
-        expect(writeText).toHaveBeenLastCalledWith('Car Rainbow — Win #1: 🟥🟧🟨🟩🟦🟪');
+        expect(writeText).toHaveBeenLastCalledWith('Car Rainbow — Win #1: 🟥🟧🟨🟩🟦🟪\nPlay at https://carrainbow.quest/');
         expect(await screen.findByRole('button', { name: 'Copied!' })).toBeInTheDocument();
     });
 
@@ -103,7 +103,7 @@ describe('CarRainbow', () => {
             await findAllCars(user);
             await user.click(screen.getByRole('button', { name: 'Share result' }));
 
-            expect(share).toHaveBeenCalledWith({ text: 'Car Rainbow — Win #1: 🟥🟧🟨🟩🟦🟪' });
+            expect(share).toHaveBeenCalledWith({ text: 'Car Rainbow — Win #1: 🟥🟧🟨🟩🟦🟪\nPlay at https://carrainbow.quest/' });
             expect(screen.queryByRole('button', { name: 'Copied!' })).not.toBeInTheDocument();
         } finally {
             delete navigator.share;
