@@ -30,6 +30,20 @@ describe('Settings', () => {
         expect(onThemeChange).toHaveBeenCalledWith('dark');
     });
 
+    it('marks the active difficulty option and reports changes', async () => {
+        const user = userEvent.setup();
+        const onDifficultyChange = vi.fn();
+        render(<Settings theme="system" onThemeChange={vi.fn()} difficulty="easy" onDifficultyChange={onDifficultyChange} />);
+
+        await user.click(screen.getByRole('button', { name: 'Settings' }));
+
+        expect(screen.getByRole('radio', { name: 'Easy' })).toBeChecked();
+
+        await user.click(screen.getByRole('radio', { name: 'Hard' }));
+
+        expect(onDifficultyChange).toHaveBeenCalledWith('hard');
+    });
+
     it('closes the dialog from the Done button', async () => {
         const user = userEvent.setup();
         render(<Settings theme="system" onThemeChange={vi.fn()} />);

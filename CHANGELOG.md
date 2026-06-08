@@ -2,6 +2,13 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.13.0] - 2026-06-07
+
+### Added
+
+- A "Difficulty" toggle in the Settings menu (`Settings.jsx`): Easy (find cars in any order, the existing behavior) or Hard (cars must be found in rainbow order — clicking out of order is a no-op with a "not yet" tone); persisted to `localStorage` (`car-rainbow-difficulty`) and restarts the current board when changed, so Hard mode applies consistently to the extended color set as well
+- A React error boundary (`ErrorBoundary.jsx`, `_error-boundary.scss`) wrapping `<CarRainbow />` in `index.jsx`: catches render errors, logs them, and shows a friendly fallback card with a "Reload" button instead of a blank page
+
 ## [1.12.0] - 2026-06-07
 
 ### Added

@@ -1,0 +1,31 @@
+@use 'tokens' as *;
+
+.error-boundary {
+    align-items: center;
+    background-color: var(--color-surface);
+    border-radius: calc(#{$radius-lg} - 4px);
+    box-shadow: $shadow-lg;
+    color: var(--color-text);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $padding-mobile * 0.6;
+    justify-content: center;
+    padding: $padding-mobile * 1.5;
+    text-align: center;
+}
+
+.error-boundary__title {
+    font-size: 1.6em;
+    margin: 0;
+}
+
+.error-boundary__message {
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 320px;
+}
+
+.error-boundary .button {
+    width: auto;
+}

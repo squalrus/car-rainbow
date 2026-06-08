@@ -12,16 +12,12 @@ _No open bugs._
 |-------|--------|-------|
 | [No accessibility audit](#no-accessibility-audit) | M | H |
 | [Add ESLint with React/hooks plugin](#add-eslint-with-reacthooks-plugin) | M | M |
-| [Hardcoded GA tracking ID to env var](#hardcoded-ga-tracking-id-to-env-var) | S | M |
-| [No error boundary](#no-error-boundary) | S | M |
 | [No offline/PWA support](#no-offlinepwa-support) | L | M |
 
 ## Feature Ideas
 
 | Title | Effort | Value |
 |-------|--------|-------|
-| [Settings menu (theme, difficulty, colors)](#settings-menu-theme-difficulty-colors) | L | H |
-| [Difficulty levels / alternate sets](#difficulty-levels--alternate-sets) | L | M |
 | [Parallax scenery background](#parallax-scenery-background) | M | M |
 | [Shareable results](#shareable-results) | M | M |
 | [Localization](#localization) | L | M |
@@ -40,18 +36,6 @@ _No open bugs._
 **Why** — only Prettier formatting is configured today; ESLint with `eslint-plugin-react`/`eslint-plugin-react-hooks` would catch real bugs — like the direct state mutation in `carClick`/`replayClick` — automatically, before they ship
 **Notes:** wire into an `npm run lint` script and CI; pair with `eslint-config-prettier` to avoid rule conflicts with the existing `.prettierrc`
 
-### Hardcoded GA tracking ID to env var
-
-**Type:** improvement
-**Why** — the Google Analytics tracking ID is inlined in the `gtag.js` snippet in `src/index.html`; moving it to an environment variable would make it easy to point dev builds at a separate property (or disable analytics) without editing source
-**Notes:** Parcel supports `.env` files; since `index.html` is static markup rather than JSX, this would need a small build-time substitution step
-
-### No error boundary
-
-**Type:** improvement
-**Why** — there's no React error boundary around `<CarRainbow />`; an unexpected render error currently produces a blank page with no recovery path or user-facing message
-**Notes:** add a small class-based `ErrorBoundary` (or lightweight library) wrapping the root render in `index.jsx`, showing a friendly fallback with a reload prompt
-
 ### Outdated browserslist data
 
 **Type:** improvement
@@ -63,18 +47,6 @@ _No open bugs._
 **Type:** improvement
 **Why** — the app requires a network connection on first load and offers no "install to home screen" experience; PWA support (manifest + service worker) would let players use it offline and pin it like a native app
 **Notes:** add a web app manifest and a Parcel-compatible service worker plugin; cache the static bundle and car images for offline play
-
-### Settings menu (theme, difficulty, colors)
-
-**Type:** feature
-**Why** — a unified settings interface lets players customize appearance (dark/light theme with device-preference detection), gameplay (easy = any order, hard = rainbow order only), and variety (extra color cars: black, white, pink, plus a "crazy pattern" variant); modern games expect settings, and this adds replayability and accessibility
-**Notes:** the menu shell and theme switching (System/Light/Dark, persisted to `localStorage`, `prefers-color-scheme` fallback) shipped in v1.10.0, and the extra-colors toggle (black, white, brown, pink, silver, pattern — `EXTENDED_COLORS` in `src/js/colors.js`, persisted to `localStorage`, grows the board to 12 cars) shipped in v1.12.0 (`Settings.jsx`, `_settings.scss`, `_car-rainbow.scss`); remaining scope is difficulty mode (carClick logic to track/validate click order against `RAINBOW_COLORS`), which overlaps with [Difficulty levels / alternate sets](#difficulty-levels--alternate-sets)
-
-### Difficulty levels / alternate sets
-
-**Type:** feature
-**Why** — currently there's exactly one fixed six-color board; difficulty levels (more cars, similar shades, time limits) or alternate sets would add replay variety for players who've mastered the base game
-**Notes:** the color list now lives in `src/js/colors.js` (`{ id, name, hex }` entries consumed by `CarRainbow.jsx`), making it straightforward to swap in alternate sets; could combine with the brainstorm's seasonal/alternate-skins idea below
 
 ### Parallax scenery background
 
