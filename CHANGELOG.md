@@ -2,6 +2,12 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.14.1] - 2026-06-08
+
+### Changed
+
+- Shared win results (`buildShareText` in `src/js/share.js`) now include a link to https://carrainbow.quest/ on a second line, so people receiving a shared result can click straight through to play
+
 ## [1.14.0] - 2026-06-07
 
 ### Added
