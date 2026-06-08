@@ -2,6 +2,13 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.14.2] - 2026-06-08
+
+### Changed
+
+- **Reframed copy and SEO around the game's real-world road-trip use.** Updated the descriptions in `README.md`, `CLAUDE.md`, and `package.json`, plus the page `<title>`, meta description/keywords, and Open Graph/Twitter tags in `src/index.html`, to reflect that Car Rainbow is a checklist for spotting real cars out the window on a road trip — not an on-screen "find the car" game — and to target road-trip/kids'-travel-game search terms (including Bluey-related keywords, since the show popularized this style of car-spotting game)
+- **Reframed backlog brainstorm ideas to match the real-world spotting context.** "Daily challenge mode," "Two-player race mode," and "The One Big Rainbow" in `BACKLOG.md` previously assumed cars were positioned on an on-screen board to be found; reworded them around seeding a daily spotting order, giving each backseat rider their own checklist, and syncing real-world spotting globally
+
 ## [1.14.1] - 2026-06-08
 
 ### Changed

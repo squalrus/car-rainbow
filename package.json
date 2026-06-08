@@ -1,7 +1,7 @@
 {
   "name": "car-rainbow",
-  "version": "1.14.1",
-  "description": "Spot all six rainbow-colored cars and check them off — a small free browser game.",
+  "version": "1.14.2",
+  "description": "A road-trip game for kids: spot a real car of each rainbow color and check it off — free and built for the back seat.",
   "source": "src/index.html",
   "scripts": {
     "build": "parcel build",

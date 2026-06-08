@@ -1,6 +1,6 @@
 # Car Rainbow
 
-A small single-page game: spot all six rainbow-colored cars and check them off. When every car is marked active, a "you did it" dialog appears with a replay button that increments a win counter and resets the board.
+A road-trip game for kids (and the grown-ups riding along): spot a real car of each rainbow color out the window and check it off in the app. When every color is marked active, a "you did it" dialog appears with a replay button that increments a win counter and resets the board — or step it up with hard mode, where cars must be spotted in rainbow order.
 
 ## Tech Stack
 
