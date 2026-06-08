@@ -11,6 +11,7 @@ import { playCheckSound, playReplaySound, playWinSong } from './sound';
 const WINS_STORAGE_KEY = 'car-rainbow-wins';
 const THEME_STORAGE_KEY = 'car-rainbow-theme';
 const EXTENDED_COLORS_STORAGE_KEY = 'car-rainbow-extended-colors';
+const DIFFICULTY_STORAGE_KEY = 'car-rainbow-difficulty';
 
 function buildColors(extendedColors) {
     const palette = extendedColors ? [...RAINBOW_COLORS, ...EXTENDED_COLORS] : RAINBOW_COLORS;
@@ -26,6 +27,7 @@ function createGameData(extendedColors) {
 
 function CarRainbow() {
     const [extendedColors, setExtendedColors] = useState(() => localStorage.getItem(EXTENDED_COLORS_STORAGE_KEY) === 'true');
+    const [difficulty, setDifficulty] = useState(() => localStorage.getItem(DIFFICULTY_STORAGE_KEY) || 'easy');
     const [data, setData] = useState(() => createGameData(extendedColors));
     const [showPopper, setShowPopper] = useState(false);
     const [theme, setTheme] = useState(() => localStorage.getItem(THEME_STORAGE_KEY) || 'system');
@@ -82,7 +84,20 @@ function CarRainbow() {
         setData((previousData) => ({ wins: previousData.wins, colors: buildColors(enabled) }));
     }
 
+    function changeDifficulty(value) {
+        setDifficulty(value);
+        localStorage.setItem(DIFFICULTY_STORAGE_KEY, value);
+        setShowPopper(false);
+        replayRef.current?.close();
+        setData((previousData) => ({ ...previousData, colors: previousData.colors.map((color) => ({ ...color, active: false })) }));
+    }
+
     function carClick(index) {
+        if (difficulty === 'hard' && index !== data.colors.findIndex((color) => !color.active)) {
+            playCheckSound(false);
+            return;
+        }
+
         const updatedColors = data.colors.map((color, i) => (i === index ? { ...color, active: !color.active } : color));
 
         playCheckSound(updatedColors[index].active);
@@ -105,6 +120,8 @@ function CarRainbow() {
                 onResetWins={resetWins}
                 extendedColors={extendedColors}
                 onExtendedColorsChange={changeExtendedColors}
+                difficulty={difficulty}
+                onDifficultyChange={changeDifficulty}
             />
             <div className="app-card">
                 <GameStatus wins={data.wins} activeCount={activeCount} totalCount={data.colors.length} />

@@ -6,7 +6,12 @@ const THEME_OPTIONS = [
     { value: 'dark', label: 'Dark' },
 ];
 
-function Settings({ theme, onThemeChange, wins, onResetWins, extendedColors, onExtendedColorsChange }) {
+const DIFFICULTY_OPTIONS = [
+    { value: 'easy', label: 'Easy' },
+    { value: 'hard', label: 'Hard' },
+];
+
+function Settings({ theme, onThemeChange, wins, onResetWins, extendedColors, onExtendedColorsChange, difficulty, onDifficultyChange }) {
     const dialogRef = useRef(null);
 
     function open() {
@@ -46,6 +51,16 @@ function Settings({ theme, onThemeChange, wins, onResetWins, extendedColors, onE
                             {option.label}
                         </label>
                     ))}
+                </fieldset>
+                <fieldset className="settings__group">
+                    <legend className="settings__legend">Difficulty</legend>
+                    {DIFFICULTY_OPTIONS.map((option) => (
+                        <label key={option.value} className="settings__option">
+                            <input type="radio" name="difficulty" value={option.value} checked={difficulty === option.value} onChange={() => onDifficultyChange(option.value)} />
+                            {option.label}
+                        </label>
+                    ))}
+                    <p className="settings__hint">Hard mode requires finding the cars in rainbow order — and restarts the board.</p>
                 </fieldset>
                 <fieldset className="settings__group">
                     <legend className="settings__legend">Colors</legend>

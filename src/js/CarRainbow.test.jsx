@@ -51,6 +51,25 @@ describe('CarRainbow', () => {
         expect(playCheckSound).toHaveBeenLastCalledWith(false);
     });
 
+    it('only activates the next car in rainbow order when in hard mode', async () => {
+        const user = userEvent.setup();
+        localStorage.setItem('car-rainbow-difficulty', 'hard');
+        render(<CarRainbow />);
+
+        const orangeCar = getCarButton('Orange');
+        const redCar = getCarButton('Red');
+
+        await user.click(orangeCar);
+
+        expect(orangeCar).toHaveAttribute('aria-pressed', 'false');
+        expect(playCheckSound).toHaveBeenLastCalledWith(false);
+
+        await user.click(redCar);
+
+        expect(redCar).toHaveAttribute('aria-pressed', 'true');
+        expect(playCheckSound).toHaveBeenLastCalledWith(true);
+    });
+
     it('shows the win dialog and popper once every car is active', async () => {
         const user = userEvent.setup();
         render(<CarRainbow />);
