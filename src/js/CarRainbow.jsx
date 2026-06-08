@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Car from './Car';
-import RAINBOW_COLORS from './colors';
+import RAINBOW_COLORS, { EXTENDED_COLORS } from './colors';
 import Footer from './Footer';
 import GameStatus from './GameStatus';
 import Popper from './Popper';
@@ -10,16 +10,23 @@ import { playCheckSound, playReplaySound, playWinSong } from './sound';
 
 const WINS_STORAGE_KEY = 'car-rainbow-wins';
 const THEME_STORAGE_KEY = 'car-rainbow-theme';
+const EXTENDED_COLORS_STORAGE_KEY = 'car-rainbow-extended-colors';
 
-function createGameData() {
+function buildColors(extendedColors) {
+    const palette = extendedColors ? [...RAINBOW_COLORS, ...EXTENDED_COLORS] : RAINBOW_COLORS;
+    return palette.map(({ id, name, hex }) => ({ id, name, hex, active: false }));
+}
+
+function createGameData(extendedColors) {
     return {
         wins: Number(localStorage.getItem(WINS_STORAGE_KEY)) || 0,
-        colors: RAINBOW_COLORS.map(({ id, name }) => ({ id, name, active: false })),
+        colors: buildColors(extendedColors),
     };
 }
 
 function CarRainbow() {
-    const [data, setData] = useState(createGameData);
+    const [extendedColors, setExtendedColors] = useState(() => localStorage.getItem(EXTENDED_COLORS_STORAGE_KEY) === 'true');
+    const [data, setData] = useState(() => createGameData(extendedColors));
     const [showPopper, setShowPopper] = useState(false);
     const [theme, setTheme] = useState(() => localStorage.getItem(THEME_STORAGE_KEY) || 'system');
     const replayRef = useRef(null);
@@ -48,7 +55,7 @@ function CarRainbow() {
     const segmentSize = 360 / data.colors.length;
     const frameGradient = `conic-gradient(${data.colors
         .map((color, index) => {
-            const fill = color.active ? RAINBOW_COLORS[index % RAINBOW_COLORS.length].hex : 'rgba(43, 45, 66, 0.1)';
+            const fill = color.active ? color.hex : 'rgba(43, 45, 66, 0.1)';
             return `${fill} ${index * segmentSize}deg ${(index + 1) * segmentSize}deg`;
         })
         .join(', ')})`;
@@ -67,6 +74,14 @@ function CarRainbow() {
         setData((previousData) => ({ ...previousData, wins: 0 }));
     }
 
+    function changeExtendedColors(enabled) {
+        setExtendedColors(enabled);
+        localStorage.setItem(EXTENDED_COLORS_STORAGE_KEY, String(enabled));
+        setShowPopper(false);
+        replayRef.current?.close();
+        setData((previousData) => ({ wins: previousData.wins, colors: buildColors(enabled) }));
+    }
+
     function carClick(index) {
         const updatedColors = data.colors.map((color, i) => (i === index ? { ...color, active: !color.active } : color));
 
@@ -83,10 +98,17 @@ function CarRainbow() {
 
     return (
         <div className="app-frame" style={{ '--app-frame-gradient': frameGradient }}>
-            <Settings theme={theme} onThemeChange={setTheme} wins={data.wins} onResetWins={resetWins} />
+            <Settings
+                theme={theme}
+                onThemeChange={setTheme}
+                wins={data.wins}
+                onResetWins={resetWins}
+                extendedColors={extendedColors}
+                onExtendedColorsChange={changeExtendedColors}
+            />
             <div className="app-card">
                 <GameStatus wins={data.wins} activeCount={activeCount} totalCount={data.colors.length} />
-                <div className="car-rainbow">{cars}</div>
+                <div className={`car-rainbow ${extendedColors ? 'car-rainbow--extended' : ''}`}>{cars}</div>
                 <Replay ref={replayRef} replayClick={replayClick} />
                 <Popper active={showPopper} />
                 <Footer />

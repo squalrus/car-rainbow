@@ -6,7 +6,7 @@ const THEME_OPTIONS = [
     { value: 'dark', label: 'Dark' },
 ];
 
-function Settings({ theme, onThemeChange, wins, onResetWins }) {
+function Settings({ theme, onThemeChange, wins, onResetWins, extendedColors, onExtendedColorsChange }) {
     const dialogRef = useRef(null);
 
     function open() {
@@ -46,6 +46,15 @@ function Settings({ theme, onThemeChange, wins, onResetWins }) {
                             {option.label}
                         </label>
                     ))}
+                </fieldset>
+                <fieldset className="settings__group">
+                    <legend className="settings__legend">Colors</legend>
+                    <label className="settings__toggle">
+                        <input type="checkbox" checked={extendedColors} onChange={(event) => onExtendedColorsChange(event.target.checked)} />
+                        <span className="settings__toggle-track" aria-hidden="true"></span>
+                        Extended car colors
+                    </label>
+                    <p className="settings__hint">Adds six more cars — black, white, brown, pink, silver &amp; pattern — and restarts the board.</p>
                 </fieldset>
                 <fieldset className="settings__group">
                     <legend className="settings__legend">Win count</legend>

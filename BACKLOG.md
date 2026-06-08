@@ -68,7 +68,7 @@ _No open bugs._
 
 **Type:** feature
 **Why** — a unified settings interface lets players customize appearance (dark/light theme with device-preference detection), gameplay (easy = any order, hard = rainbow order only), and variety (extra color cars: black, white, pink, plus a "crazy pattern" variant); modern games expect settings, and this adds replayability and accessibility
-**Notes:** the menu shell and theme switching (System/Light/Dark, persisted to `localStorage`, `prefers-color-scheme` fallback) shipped in v1.10.0 (`Settings.jsx`, `_settings.scss`); remaining scope is difficulty mode (carClick logic to track/validate click order against `RAINBOW_COLORS`) and extra colors (the color list now lives in `src/js/colors.js`, so adding entries there plus color toggle state is the path forward), both of which overlap with [Difficulty levels / alternate sets](#difficulty-levels--alternate-sets)
+**Notes:** the menu shell and theme switching (System/Light/Dark, persisted to `localStorage`, `prefers-color-scheme` fallback) shipped in v1.10.0, and the extra-colors toggle (black, white, brown, pink, silver, pattern — `EXTENDED_COLORS` in `src/js/colors.js`, persisted to `localStorage`, grows the board to 12 cars) shipped in v1.12.0 (`Settings.jsx`, `_settings.scss`, `_car-rainbow.scss`); remaining scope is difficulty mode (carClick logic to track/validate click order against `RAINBOW_COLORS`), which overlaps with [Difficulty levels / alternate sets](#difficulty-levels--alternate-sets)
 
 ### Difficulty levels / alternate sets
 
