@@ -2,6 +2,19 @@
 
 All notable changes to Car Rainbow are documented here. Versions follow [Semantic Versioning](https://semver.org/); dates reflect when each change landed on `main`.
 
+## [1.12.0] - 2026-06-07
+
+### Added
+
+- An "Extra colors" toggle in the Settings menu (`Settings.jsx`, `_settings.scss`): switches on six additional cars — black, white, brown, pink, silver, and a striped "pattern" car — bringing the board from 6 to 12 cars; the choice is persisted to `localStorage` (`car-rainbow-extended-colors`) and restarts the current board when changed
+- `EXTENDED_COLORS` export in `src/js/colors.js` holding the six new `{ id, name, hex }` entries, combined with `RAINBOW_COLORS` via a new `buildColors` helper in `CarRainbow.jsx`
+- New car artwork for each extra color (`black.png`, `white.png`, `brown.png`, `pink.png`, `silver.png`, `pattern.png` in `src/img/`), wired up via matching `.car--*` rules in `_car.scss`
+
+### Changed
+
+- `_car-rainbow.scss`: replaced the fixed 2×3/3×2 grid with `grid-auto-rows` and vertical scrolling so the board can gracefully grow from 6 to 12 cars when extra colors are enabled
+- The progress-ring gradient in `CarRainbow.jsx` now reads each car's own `hex` instead of indexing into `RAINBOW_COLORS`, fixing a latent wrap-around bug that would have miscolored segments past the sixth car
+
 ## [1.11.0] - 2026-06-07
 
 ### Added

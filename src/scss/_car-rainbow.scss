@@ -15,4 +15,29 @@
         grid-template-rows: repeat(2, 1fr);
         margin: 0 $padding-desktop * 0.5 $padding-desktop * 0.5;
     }
+
+    &--extended {
+        gap: $gap-mobile * 0.35;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+
+        @media all and (min-width: $breakpoint-desktop) {
+            gap: $gap-desktop * 0.35;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .car__title {
+            font-size: 0.85em;
+
+            @media all and (min-width: $breakpoint-desktop) {
+                font-size: 1em;
+            }
+        }
+
+        .car__status {
+            height: 1.8em;
+            width: 1.8em;
+        }
+    }
 }

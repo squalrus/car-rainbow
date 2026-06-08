@@ -8,10 +8,11 @@ function Footer() {
         <footer className="footer">
             <p className="footer__version">v{version}</p>
             <p className="footer__credit">
-                © {year} Chad Schulz · Built by{' '}
+                © {year} · Built by{' '}
                 <a className="footer__link" href="https://squalr.us" target="_blank" rel="noreferrer">
                     Chad Schulz
                 </a>
+                {' '} &amp; Finn Schulz
             </p>
         </footer>
     );
