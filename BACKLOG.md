@@ -19,7 +19,6 @@ _No open bugs._
 | Title | Effort | Value |
 |-------|--------|-------|
 | [Parallax scenery background](#parallax-scenery-background) | M | M |
-| [Shareable results](#shareable-results) | M | M |
 | [Localization](#localization) | L | M |
 
 ## Open
@@ -36,12 +35,6 @@ _No open bugs._
 **Why** — only Prettier formatting is configured today; ESLint with `eslint-plugin-react`/`eslint-plugin-react-hooks` would catch real bugs — like the direct state mutation in `carClick`/`replayClick` — automatically, before they ship
 **Notes:** wire into an `npm run lint` script and CI; pair with `eslint-config-prettier` to avoid rule conflicts with the existing `.prettierrc`
 
-### Outdated browserslist data
-
-**Type:** improvement
-**Why** — the dev server logs a warning that `caniuse-lite` (used by Browserslist, which underpins Parcel's CSS/JS autoprefixing and target resolution) is outdated, which can cause builds to target stale browser versions
-**Notes:** run `npx update-browserslist-db@latest` to refresh the `caniuse-lite` data; consider documenting this as a periodic maintenance task
-
 ### No offline/PWA support
 
 **Type:** improvement
@@ -53,12 +46,6 @@ _No open bugs._
 **Type:** feature
 **Why** — the original "sound effects / animations" idea is now shipped (check/replay/win sounds and the rainbow progress border in v1.3.0, the staggered "drive-in" car entrance animation in v1.5.0); the one piece of that brainstorm still open is a subtly scrolling road/skyline backdrop, which would add depth and atmosphere to the play area without touching game mechanics
 **Notes:** needs new art assets (road/skyline layers); animate via CSS `background-position` keyframes or layered `transform: translateX`; respect `prefers-reduced-motion` like the existing `car-drive-in` animation does; see the brainstorm entry below for the original framing alongside the now-shipped "drive-in" half
-
-### Shareable results
-
-**Type:** feature
-**Why** — there's currently no way for a player to show off a win beyond the in-app dialog; a shareable result (emoji grid, snapshot image, or link) would encourage social sharing and return visits
-**Notes:** see the brainstorm's "daily challenge" emoji-grid idea and "snapshot/share card" canvas-rendering idea below for two concrete directions
 
 ### Localization
 
@@ -81,4 +68,4 @@ A fresh pass looking for ideas that build on what's already shipped (the card re
 
 ### Craziest idea: the One Big Rainbow
 
-A real-time, planet-wide shared board: every visitor across the globe sees the *same* six cars, and the instant *anyone, anywhere* finds one, it lights up for *everyone* simultaneously (via a lightweight WebSocket/pub-sub backend). Finishing the rainbow becomes a collective act — thousands of strangers unknowingly cooperating to complete one giant, perpetually-resetting rainbow together, with a live counter showing how many times humanity has finished it. Equal parts beautiful and unhinged: it turns a 30-second solo diversion into an ambient, ongoing piece of internet performance art that nobody agreed to participate in.
+A real-time, planet-wide shared board: every visitor across the globe sees the _same_ six cars, and the instant _anyone, anywhere_ finds one, it lights up for _everyone_ simultaneously (via a lightweight WebSocket/pub-sub backend). Finishing the rainbow becomes a collective act — thousands of strangers unknowingly cooperating to complete one giant, perpetually-resetting rainbow together, with a live counter showing how many times humanity has finished it. Equal parts beautiful and unhinged: it turns a 30-second solo diversion into an ambient, ongoing piece of internet performance art that nobody agreed to participate in.

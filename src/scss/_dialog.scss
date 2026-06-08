@@ -26,6 +26,13 @@
 
 .dialog__options {
     display: grid;
+    gap: $padding-mobile * 0.5;
     grid-template-columns: 1fr;
     margin-top: $padding-mobile;
+}
+
+.dialog__share-preview {
+    font-size: 1.1em;
+    margin: 0;
+    text-align: center;
 }

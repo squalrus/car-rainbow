@@ -18,7 +18,9 @@ test.describe('Car Rainbow visual regression', () => {
         }
 
         await expect(page.getByRole('dialog')).toBeVisible();
-        await expect(page).toHaveScreenshot('win-dialog.png', { animations: 'disabled' });
+        // The win dialog now carries more text (share preview + button label), which makes it more
+        // sensitive to cross-machine font-rendering differences than the global threshold allows.
+        await expect(page).toHaveScreenshot('win-dialog.png', { animations: 'disabled', maxDiffPixelRatio: 0.08 });
     });
 
     test('settings modal', async ({ page }) => {
